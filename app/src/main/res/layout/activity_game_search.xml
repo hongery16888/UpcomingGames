@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.magic.upcoming.games.viewmodel.GameSearchViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/up_navigation_imageButton"
+            android:layout_width="?attr/actionBarSize"
+            android:layout_height="?attr/actionBarSize"
+            android:padding="@dimen/dp_15"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/nav_app_bar_navigate_up_description"
+            android:tint="?attr/colorOnBackground"
+            android:onClick="@{() -> viewModel.back()}"
+            android:src="@drawable/ic_left_arrow"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/search_editText"
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_marginStart="@dimen/margin_large"
+            android:background="@null"
+            android:hint="@string/search_by_game_title"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            app:layout_constraintLeft_toRightOf="@id/up_navigation_imageButton"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/clear_search_text_imageButton"
+            android:layout_width="?attr/actionBarSize"
+            android:layout_height="?attr/actionBarSize"
+            android:padding="@dimen/dp_15"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/nav_app_bar_navigate_up_description"
+            android:onClick="@{() -> viewModel.onClearSearchText()}"
+            android:src="@drawable/ic_close"
+            android:tint="?attr/colorOnBackground"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/top_horizontal_line_view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?attr/colorOnBackgroundMediumContrast"
+            app:layout_constraintTop_toBottomOf="@id/search_editText" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/search_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/colorBackground"
+            android:overScrollMode="never"
+            android:scrollbars="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/bottom_horizontal_line_view"
+            app:layout_constraintTop_toBottomOf="@id/top_horizontal_line_view" />
+
+        <View
+            android:id="@+id/bottom_horizontal_line_view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:alpha="@dimen/bottom_horizontal_bar_alpha"
+            android:background="?attr/colorOnBackgroundMediumContrast"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

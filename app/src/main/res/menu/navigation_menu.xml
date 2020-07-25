@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/ic_game"
+        android:title="Home"
+        app:cnb_iconColor="@color/home"/>
+
+    <item
+        android:id="@+id/video"
+        android:icon="@drawable/ic_video"
+        android:title="Video"
+        app:cnb_iconColor="@color/find" />
+
+    <item
+        android:id="@+id/favorites"
+        android:icon="@drawable/ic_favorites"
+        android:title="Favorite"
+        app:cnb_iconColor="@color/favorites"/>
+
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/ic_setting"
+        android:title="Setting"
+        app:cnb_iconColor="@color/settings" />
+
+</menu>

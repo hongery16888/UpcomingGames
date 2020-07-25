@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">UpcomingGames</string>
+
+    <string name="facebook_app_id" translatable="false">2709220106027955</string>
+    <string name="facebook_interstitial_id">2709220106027955_2709220172694615</string>
+
+    <string name="ad_attribution">Ad</string>
+    <string name="admob_app_id">ca-app-pub-4760824795091656~1865677136</string>
+    <string name="admob_banner_id">ca-app-pub-4760824795091656/6112770255</string>
+    <string name="admob_interstitial_id">ca-app-pub-4760824795091656/9501173318</string>
+
+    <string name="filter">filter</string>
+    <string name="search_all_games">Search all games</string>
+    <string name="game_cover">game cover</string>
+    <string name="no_release_date">No release date</string>
+    <string name="not_available">Not available</string>
+    <string name="release_date">Release date</string>
+    <string name="quarter_release_date">Q%1d %2$s</string>
+    <string name="platforms">Platforms</string>
+    <string name="developers">Developers</string>
+    <string name="publishers">Publishers</string>
+    <string name="genres">Genres</string>
+    <string name="summary">Summary</string>
+    <string name="game_screenshot">Game screenshot</string>
+    <string name="details">Details</string>
+    <string name="ratings">Ratings</string>
+    <string name="new_and_upcoming">New and upcoming</string>
+    <string name="past_month">Past month</string>
+    <string name="past_year">Past year</string>
+    <string name="custom_range">Custom range…</string>
+    <string name="release_date_header">Release date</string>
+    <string name="apply">APPLY</string>
+    <string name="filter_fragment_title">Sort and filter</string>
+    <string name="sort_direction">Sort direction</string>
+    <string name="current_generation">Current generation</string>
+    <string name="pick_platforms_from_list">Pick from list…</string>
+    <string name="ascending">Ascending</string>
+    <string name="descending">Descending</string>
+    <string name="end_date">End date</string>
+    <string name="start_date">Start date</string>
+    <string name="all">All</string>
+    <string name="all_time">All-time</string>
+    <string name="web_link">web link</string>
+    <string name="search_by_game_title">Search by game title</string>
+    <string name="no_network_connection">No network connection.</string>
+    <string name="retry">Retry</string>
+    <string name="update">update</string>
+    <string name="last_updated_data_stale">This data was last updated %s.</string>
+    <string name="last_updated_data_stale_user_invoked_update">Update failed. Check your network connection.\n\nThis data was last updated %s.</string>
+    <string name="updating_game_database">Updating game database…</string>
+    <string name="favorites">Favorites</string>
+    <string name="no_favorites_added_yet">Your favorites will show up here</string>
+    <string name="no_games_match_filter_options">No games found matching your filter options</string>
+    <string name="filter_results_by_release_date">Filter results by release date</string>
+    <string name="sort_release_dates_in_this_direction">Sort in this direction by release date</string>
+    <string name="filter_results_by_game_platform">Filter results by game platform</string>
+</resources>

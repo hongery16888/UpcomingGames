@@ -1,0 +1,35 @@
+<resources>
+
+    <style name="CommonTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:colorBackground">@color/colorBackground</item>
+        <item name="colorBackgroundVariant">@color/colorBackgroundVariant</item>
+        <item name="colorOnBackgroundVeryHighContrast">@color/colorOnBackgroundVeryHighContrast</item>
+        <item name="colorOnBackgroundHighContrast">@color/colorOnBackgroundHighContrast</item>
+        <item name="colorOnBackgroundMediumContrast">@color/colorOnBackgroundMediumContrast</item>
+        <item name="colorOnBackgroundLowContrast">@color/colorOnBackgroundLowContrast</item>
+        <item name="colorPlatformChipBackground">@color/colorPlatformChipBackground</item>
+        <item name="colorPlatformChipBorder">@color/colorPlatformChipBorder</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
+
+    <style name="Theme_FullScreen" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
+
+</resources>

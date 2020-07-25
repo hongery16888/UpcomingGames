@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="false"
+    android:background="#00000000">
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:src="@drawable/splash_gif"
+        app:layout_srlBackgroundColor="@android:color/transparent"
+        app:layout_srlSpinnerStyle="Scale"/>
+
+    <com.magic.upcoming.games.view.FTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upcoming Games"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        android:background="@drawable/shape_title"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:paddingStart="@dimen/dp_10"
+        android:paddingEnd="@dimen/dp_10"/>
+
+    <com.magic.upcoming.games.view.FTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Games are more fun with the Upcoming Games app"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        android:background="@drawable/shape_title"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="120dp"
+        android:paddingStart="@dimen/dp_10"
+        android:paddingEnd="@dimen/dp_10"/>
+
+    <com.github.ybq.android.spinkit.SpinKitView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/spin_kit"
+        style="@style/SpinKitView.Wave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        app:SpinKit_Color="@color/colorPrimary"
+        android:layout_marginBottom="20dp"/>
+
+</FrameLayout>

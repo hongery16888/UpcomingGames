@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Main Activity -->
+    <dimen name="main_padding">20dp</dimen>
+
+    <dimen name="time_text_size">16sp</dimen>
+    <dimen name="see_all_size">16sp</dimen>
+
+    <dimen name="dp_0">0dp</dimen>
+    <dimen name="dp_2">2dp</dimen>
+    <dimen name="dp_3">3dp</dimen>
+    <dimen name="dp_5">5dp</dimen>
+    <dimen name="dp_8">8dp</dimen>
+    <dimen name="dp_10">10dp</dimen>
+    <dimen name="dp_15">15dp</dimen>
+    <dimen name="dp_20">20dp</dimen>
+
+    <dimen name="margin_normal">16dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_extra_small">4dp</dimen>
+    <dimen name="margin_extra_extra_small">2dp</dimen>
+    <dimen name="margin_large">32dp</dimen>
+    <dimen name="margin_extra_large">64dp</dimen>
+    <dimen name="margin_12dp">12dp</dimen>
+    <dimen name="corner_radius">4dp</dimen>
+    <dimen name="text_button_size">17sp</dimen>
+    <dimen name="radio_button_height">36dp</dimen>
+    <item name="bottom_horizontal_bar_alpha" format="float" type="dimen">0.4</item>
+
+</resources>
