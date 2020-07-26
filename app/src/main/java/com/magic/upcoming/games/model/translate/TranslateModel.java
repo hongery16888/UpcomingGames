@@ -1,10 +1,12 @@
 package com.magic.upcoming.games.model.translate;
 
+import com.magic.upcoming.games.model.BaseModel;
+
 /**
  * Created by ThinkPad on 2017/11/2.
  */
 
-public class TranslateModel {
+public class TranslateModel extends BaseModel {
 
     /**
      * from : en-EU

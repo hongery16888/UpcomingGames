@@ -23,6 +23,7 @@ class GameMainFragment: BaseFragment<FragmentGameMainBinding, GameMainViewModel>
     override fun initView() {
         binding?.lifecycleOwner = this
         binding?.viewModel = viewModel
+        binding?.viewModel?.gameList()
     }
 
     override fun setListener() {

@@ -48,10 +48,10 @@ public class RetrofitBuilder {
 
 
             mRetrofit = new Retrofit.Builder()
-                    .baseUrl(GameConts.BASE_PATH)
+                    .baseUrl(GameConts.GIANT_BOMB_BASE_PATH)
+                    .client(httpClient.build())
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                    .client(httpClient.build())
                     .build();
         }
 

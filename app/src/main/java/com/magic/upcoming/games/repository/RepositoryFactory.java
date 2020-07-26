@@ -2,8 +2,8 @@ package com.magic.upcoming.games.repository;
 
 import android.content.Context;
 
-import com.magic.upcoming.games.repository.api.TranslateRepo;
-import com.magic.upcoming.games.repository.imp.TranslateRepoImp;
+import com.magic.upcoming.games.repository.api.GameRepo;
+import com.magic.upcoming.games.repository.imp.GameRepoImp;
 
 
 /**
@@ -16,7 +16,7 @@ public class RepositoryFactory {
 //        return TranslateRepoImp_.getInstance_(context);
 //    }
 
-    public static TranslateRepo getTranslateRepo(Context context) {
-        return TranslateRepoImp.getInstance();
+    public static GameRepo getGameRepo() {
+        return GameRepoImp.getInstance();
     }
 }

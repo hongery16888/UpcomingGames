@@ -8,17 +8,12 @@ import com.ismaeldivita.chipnavigation.ChipNavigationBar
 import com.magic.upcoming.games.R
 import com.magic.upcoming.games.base.BaseFragmentAdapter
 import com.magic.upcoming.games.fragment.FavoriteFragment
-import com.magic.upcoming.games.fragment.GameFragment
 import com.magic.upcoming.games.fragment.GameMainFragment
 import com.magic.upcoming.games.repository.RepositoryFactory
 import com.magic.upcoming.games.view.VerticalViewpager
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import okhttp3.ResponseBody
-import retrofit2.Call
-import java.util.ArrayList
-import retrofit2.Callback
-import retrofit2.Response
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -37,22 +32,24 @@ class MainActivity : AppCompatActivity() {
         list.add(FavoriteFragment())
         list.add(FavoriteFragment())
 
-        RepositoryFactory.getTranslateRepo(this).translate
-                .enqueue(object : Callback<ResponseBody>{
-                    override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                        println("------------------>onFailure : ${t.message}")
-                    }
+//        RepositoryFactory.getTranslateRepo(this).translate
+//                .enqueue(object : Callback<ResponseBody>{
+//                    override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+//                        println("------------------>onFailure : ${t.message}")
+//                    }
+//
+//                    override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+//                        println("------------------>onResponse : ${response.message()}")
+//                    }
+//                })
 
-                    override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                        println("------------------>onResponse : ${response.message()}")
-                    }
-                })
-//                .subscribeOn(Schedulers.newThread())
+//        RepositoryFactory.getGameRepo(this).translateFlow
+//                .subscribeOn(Schedulers.io())
 //                .observeOn(AndroidSchedulers.mainThread())
 //                .subscribe({
-//                    println("------------------>$it")
+//                    println("------------------>onSuccess : ${it.out}")
 //                }, {
-//                    println("------------------>${it.message}")
+//                    println("------------------>Throwable : ${it.message}")
 //                })
 
         container.setScanScroll(false)
@@ -62,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         menu.setItemSelected(0)
 
         menu.setOnItemSelectedListener {
-            when(it){
+            when (it) {
                 R.id.home -> container.currentItem = 0
                 R.id.video -> container.currentItem = 1
                 R.id.favorites -> container.currentItem = 2
