@@ -5,10 +5,10 @@ import org.litepal.crud.LitePalSupport
 internal class GameFilterOptions : LitePalSupport() {
     var sortDirectionName: String? = null
     var releaseDateTypeName: String? = null
-    var releastStartData: String? = ""
-    var releastEndData: String? = ""
-    var releastStartDataMills: Long? = 0
-    var releastEndDataMills: Long? = 0
+    var releaseStartData: String? = ""
+    var releaseEndData: String? = ""
+    var releaseStartDataNet: String? = ""
+    var releaseEndDataNet: String? = ""
     var platformTypeName: String? = null
     var platformIndices: ArrayList<Int>? = ArrayList()
 }

@@ -36,8 +36,8 @@ internal class GameFilterActivity : BaseActivity<ActivityGameFilterBinding, Game
             items.addAll(allKnownPlatforms)
         }
 
-        println("------------------>StartTime : ${OrmGameApi.gameFilterOptions?.releastStartDataMills}")
-        println("------------------>EndTime : ${OrmGameApi.gameFilterOptions?.releastEndDataMills}")
+        println("------------------>StartTime : ${OrmGameApi.gameFilterOptions?.releaseStartDataNet}")
+        println("------------------>EndTime : ${OrmGameApi.gameFilterOptions?.releaseEndDataNet}")
     }
     override fun setListener() {
         viewModel?.back?.observe(this, Observer {
@@ -61,8 +61,8 @@ internal class GameFilterActivity : BaseActivity<ActivityGameFilterBinding, Game
         viewModel?.updateDataType?.observe(this, Observer {
             it.getContentIfNotHandled()?.let { updateFilterOptions ->
                 if (updateFilterOptions){
-                    OrmGameApi.gameFilterOptions?.releastStartData = binding?.startDateTextInputEditText?.text?.toString()
-                    OrmGameApi.gameFilterOptions?.releastEndData = binding?.endDateTextInputEditText?.text?.toString()
+                    OrmGameApi.gameFilterOptions?.releaseStartData = binding?.startDateTextInputEditText?.text?.toString()
+                    OrmGameApi.gameFilterOptions?.releaseEndData = binding?.endDateTextInputEditText?.text?.toString()
                     OrmGameApi.gameFilterOptions?.save()
                     toast("Save Filter Success")
                     finish()

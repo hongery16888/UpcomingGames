@@ -18,13 +18,17 @@ class GameApplication : BaseApplication() {
 
         LitePal.initialize(this)
 
-        if (LitePal.find<GameFilterOptions>(1) == null)
-            GameFilterOptions().apply {
+        if (LitePal.find<GameFilterOptions>(1) == null) {
+            val gameFilterOptions = GameFilterOptions().apply {
                 sortDirectionName = SortDirection.Ascending.name
                 releaseDateTypeName = ReleaseDateType.RecentAndUpcoming.name
                 platformTypeName = PlatformType.CurrentGeneration.name
-                FilterFormatUtils.fetchDateConstraints(ReleaseDateType.RecentAndUpcoming)
-            }.save()
+            }
+            gameFilterOptions.save().let {
+                        FilterFormatUtils.fetchDateConstraints(ReleaseDateType.RecentAndUpcoming, true)
+                    }
+            gameFilterOptions.save()
+        }
     }
 
     companion object {

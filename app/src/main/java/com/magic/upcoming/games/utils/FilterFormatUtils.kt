@@ -4,15 +4,13 @@ import com.magic.upcoming.games.constant.PlatformType
 import com.magic.upcoming.games.constant.ReleaseDateType
 import com.magic.upcoming.games.constant.allKnownPlatforms
 import com.magic.upcoming.games.constant.currentGenerationPlatformRange
-import com.magic.upcoming.games.orm.GameFilterOptions
 import com.magic.upcoming.games.orm.OrmGameApi
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 object FilterFormatUtils{
 
-    fun fetchDateConstraints(dataType: ReleaseDateType) {
+    fun fetchDateConstraints(dataType: ReleaseDateType, isSave:Boolean = false) {
         var dateStartMillis: Long?
         var dateEndMillis: Long?
 
@@ -56,13 +54,18 @@ object FilterFormatUtils{
                 dateEndMillis = currentTimeMillis
             }
             ReleaseDateType.CustomDate -> {
+
+                if (OrmGameApi.gameFilterOptions?.releaseStartData.isNullOrEmpty() ||
+                        OrmGameApi.gameFilterOptions?.releaseEndData.isNullOrEmpty())
+                    return
+
                 val formatter = SimpleDateFormat("MM/dd/yyyy", Locale.US)
 
-                val startDateString = OrmGameApi.gameFilterOptions?.releastStartData
+                val startDateString = OrmGameApi.gameFilterOptions?.releaseStartData
                 calendar.time = formatter.parse(startDateString!!)!!
                 dateStartMillis = calendar.timeInMillis
 
-                val endDateString = OrmGameApi.gameFilterOptions?.releastEndData
+                val endDateString = OrmGameApi.gameFilterOptions?.releaseEndData
                 calendar.time = formatter.parse(endDateString!!)!!
 
                 // To get the last millisecond of the day, we add a day and subtract a millisecond.
@@ -80,8 +83,22 @@ object FilterFormatUtils{
             }
         }
 
-        OrmGameApi.gameFilterOptions?.releastStartDataMills = dateStartMillis
-        OrmGameApi.gameFilterOptions?.releastEndDataMills = dateEndMillis
+        println("------------------>StartTime : $dateStartMillis")
+        println("------------------>EndTime : $dateEndMillis")
+
+        OrmGameApi.gameFilterOptions?.releaseStartDataNet = formatGameListData(dateStartMillis)
+        OrmGameApi.gameFilterOptions?.releaseEndDataNet = formatGameListData(dateEndMillis)
+        if (isSave){
+            println("------------------>save data : ${OrmGameApi.gameFilterOptions?.save()}")
+
+        }
+    }
+
+    private fun formatGameListData(dateMills: Long?): String {
+        val calendar: Calendar = Calendar.getInstance()
+        val desiredPatternFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+        calendar.timeInMillis = dateMills!!
+        return desiredPatternFormatter.format(calendar.time)
     }
 
     fun fetchPlatformIndices(platformType: PlatformType): Set<Int> {

@@ -13,7 +13,7 @@ open class ResponseApi {
             get() = "${ApiField.OriginalReleaseDate.field}:" + enumValueOf<SortDirection>(OrmGameApi.gameFilterOptions?.sortDirectionName!!).direction + ","
 
         val gameListFilter: String
-            get() = "${ApiField.OriginalReleaseDate.field}:${OrmGameApi.gameFilterOptions?.releastStartDataMills}|${OrmGameApi.gameFilterOptions?.releastEndDataMills}"
+            get() = "${ApiField.OriginalReleaseDate.field}:${OrmGameApi.gameFilterOptions?.releaseStartDataNet}|${OrmGameApi.gameFilterOptions?.releaseEndDataNet}"
 
         val gameListFieldList: String
             get() = "${ApiField.Id.field},${ApiField.Guid.field},${ApiField.Name.field}"

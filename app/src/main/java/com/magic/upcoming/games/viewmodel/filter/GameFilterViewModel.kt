@@ -31,8 +31,8 @@ class GameFilterViewModel : BaseViewModel() {
     var sortDirection:ObservableField<SortDirection> = ObservableField(enumValueOf<SortDirection>(OrmGameApi.gameFilterOptions?.sortDirectionName!!))
     var dateType : ObservableField<ReleaseDateType> = ObservableField(enumValueOf<ReleaseDateType>(OrmGameApi.gameFilterOptions?.releaseDateTypeName!!))
     var platformType: ObservableField<PlatformType> = ObservableField(enumValueOf<PlatformType>(OrmGameApi.gameFilterOptions?.platformTypeName!!))
-    var startData: ObservableField<String> = ObservableField(OrmGameApi.gameFilterOptions?.releastStartData!!)
-    var endData: ObservableField<String> = ObservableField(OrmGameApi.gameFilterOptions?.releastEndData!!)
+    var startData: ObservableField<String> = ObservableField(OrmGameApi.gameFilterOptions?.releaseStartData!!)
+    var endData: ObservableField<String> = ObservableField(OrmGameApi.gameFilterOptions?.releaseEndData!!)
 
     private val _updateDataType = MutableLiveData<Event<Boolean>>()
     val updateDataType: LiveData<Event<Boolean>>
