@@ -32,4 +32,20 @@
         <item name="windowActionBar">false</item>
     </style>
 
+    <style name="MyTextButtonTheme" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="rippleColor">?attr/colorOnBackgroundMediumContrast</item>
+    </style>
+
+    <style name="TextInputLayoutAppearance" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="hintTextColor">?attr/colorAccent</item>
+        <item name="boxStrokeColor">@color/text_input_layout_box_stroke</item>
+        <item name="materialThemeOverlay">
+            @style/ThemeOverlay.AppTheme.TextInputEditText.FilledBox.Dense
+        </item>
+    </style>
+
+    <style name="ThemeOverlay.AppTheme.TextInputEditText.FilledBox.Dense" parent="ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox.Dense">
+        <item name="colorControlActivated">?attr/colorAccent</item>
+    </style>
+
 </resources>

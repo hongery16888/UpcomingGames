@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="com.magic.upcoming.games.constant.PlatformType" />
+        <import type="com.magic.upcoming.games.constant.ReleaseDateType" />
+
+        <variable
+            name="viewModel"
+            type="com.magic.upcoming.games.viewmodel.filter.GameFilterViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/up_navigation_imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_extra_small"
+            android:layout_marginBottom="@dimen/margin_extra_small"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/nav_app_bar_navigate_up_description"
+            android:onClick="@{() -> viewModel.back()}"
+            android:src="@drawable/ic_left_arrow"
+            android:tint="?attr/colorOnBackground"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/toolbar_title_textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_weight="1"
+            android:text="@string/filter_fragment_title"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            app:layout_constraintBottom_toBottomOf="@id/up_navigation_imageButton"
+            app:layout_constraintLeft_toRightOf="@id/up_navigation_imageButton"
+            app:layout_constraintTop_toTopOf="@id/up_navigation_imageButton" />
+
+        <Button
+            android:id="@+id/apply_button"
+            style="@style/MyTextButtonTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="@dimen/margin_extra_small"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:layout_marginBottom="@dimen/margin_extra_small"
+            android:letterSpacing="0.07"
+            android:text="@string/apply"
+            android:textColor="?attr/colorAccent"
+            android:textSize="@dimen/text_button_size"
+            android:onClick="@{() -> viewModel.apply()}"
+            app:layout_constraintBottom_toBottomOf="@id/up_navigation_imageButton"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/up_navigation_imageButton" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:overScrollMode="never"
+            android:scrollbars="vertical"
+            app:layout_constraintBottom_toTopOf="@id/bottom_horizontal_line_view"
+            app:layout_constraintTop_toTopOf="@id/top_horizontal_line_view">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/sort_direction_cardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginRight="@dimen/margin_normal"
+                    app:cardBackgroundColor="?attr/colorBackgroundVariant">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/margin_normal"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/sort_direction_header_textView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/sort_direction"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/sort_direction_subheader_textView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:text="@string/sort_release_dates_in_this_direction"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                            android:textSize="12sp" />
+
+                        <RadioGroup
+                            android:id="@+id/sort_direction_radioGroup"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            sortDirection="@={viewModel.sortDirection}"
+                            android:layout_marginTop="@dimen/margin_normal">
+
+                            <RadioButton
+                                android:id="@+id/sort_ascending_radioButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/radio_button_height"
+                                android:text="@string/ascending" />
+
+                            <RadioButton
+                                android:id="@+id/sort_descending_radioButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/radio_button_height"
+                                android:text="@string/descending" />
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/release_date_cardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginRight="@dimen/margin_normal"
+                    app:cardBackgroundColor="?attr/colorBackgroundVariant">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/margin_normal"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/release_date_header_textView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/release_date_header"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/release_date_subheader_textView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:text="@string/filter_results_by_release_date"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                            android:textSize="12sp" />
+
+                        <RadioGroup
+                            android:id="@+id/release_date_radioGroup"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            releaseDateType="@={viewModel.dateType}"
+                            android:layout_marginTop="@dimen/margin_normal">
+
+                            <RadioButton
+                                android:id="@+id/new_and_upcoming_releases_radioButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/radio_button_height"
+                                android:text="@string/new_and_upcoming" />
+
+                            <RadioButton
+                                android:id="@+id/past_month_radioButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/radio_button_height"
+                                android:text="@string/past_month" />
+
+                            <RadioButton
+                                android:id="@+id/this_year_radioButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/radio_button_height"
+                                android:text="@string/past_year" />
+
+                            <RadioButton
+                                android:id="@+id/any_release_date_radioButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/radio_button_height"
+                                android:text="@string/all_time" />
+
+                            <RadioButton
+                                android:id="@+id/custom_date_range_radioButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/radio_button_height"
+                                android:text="@string/custom_range" />
+
+                        </RadioGroup>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/TextInputLayoutAppearance"
+                            android:layout_width="180dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_large"
+                            android:layout_marginTop="@dimen/margin_normal"
+                            android:hint="@string/start_date"
+                            app:boxCornerRadiusBottomEnd="@dimen/corner_radius"
+                            app:boxCornerRadiusBottomStart="@dimen/corner_radius"
+                            app:boxCornerRadiusTopEnd="@dimen/corner_radius"
+                            app:boxCornerRadiusTopStart="@dimen/corner_radius"
+                            app:errorEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/start_date_textInputEditText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:digits="0123456789/"
+                                android:imeOptions="actionNext"
+                                android:inputType="date"
+                                android:maxLength="10" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/TextInputLayoutAppearance"
+                            android:layout_width="180dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_large"
+                            android:layout_marginTop="@dimen/margin_normal"
+                            android:hint="@string/end_date"
+                            app:boxCornerRadiusBottomEnd="@dimen/corner_radius"
+                            app:boxCornerRadiusBottomStart="@dimen/corner_radius"
+                            app:boxCornerRadiusTopEnd="@dimen/corner_radius"
+                            app:boxCornerRadiusTopStart="@dimen/corner_radius"
+                            app:errorEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/end_date_textInputEditText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:digits="0123456789/"
+                                android:imeOptions="actionDone"
+                                android:inputType="date"
+                                android:maxLength="10"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/platform_cardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_normal"
+                    app:cardBackgroundColor="?attr/colorBackgroundVariant">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/margin_normal"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/platform_header_textView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/platforms"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/platform_subheader_textView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:text="@string/filter_results_by_game_platform"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                            android:textSize="12sp" />
+
+                        <RadioGroup
+                            android:id="@+id/platform_type_radioGroup"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            platformType="@={viewModel.platformType}"
+                            android:layout_marginTop="@dimen/margin_normal">
+
+                            <RadioButton
+                                android:id="@+id/current_generation_radioButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/radio_button_height"
+                                android:text="@string/current_generation" />
+
+                            <RadioButton
+                                android:id="@+id/all_platforms_radioButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/radio_button_height"
+                                android:text="@string/all" />
+
+                            <RadioButton
+                                android:id="@+id/custom_platforms_radioButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/radio_button_height"
+                                android:text="@string/pick_platforms_from_list" />
+
+                        </RadioGroup>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/platform_recyclerView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_large"
+                            android:layout_marginTop="@dimen/margin_normal"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <View
+            android:id="@+id/top_horizontal_line_view"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:alpha="0.5"
+            android:background="@drawable/drop_shadow"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/up_navigation_imageButton" />
+
+        <View
+            android:id="@+id/bottom_horizontal_line_view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:alpha="@dimen/bottom_horizontal_bar_alpha"
+            android:background="?attr/colorOnBackgroundMediumContrast"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

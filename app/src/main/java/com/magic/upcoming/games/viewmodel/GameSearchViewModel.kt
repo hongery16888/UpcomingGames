@@ -14,6 +14,10 @@ class GameSearchViewModel : BaseViewModel() {
     val back: LiveData<Event<Boolean>>
         get() = _back
 
+    fun back(){
+        _back.value = Event(true)
+    }
+
     private val _clearSearchText = MutableLiveData<Event<Boolean>>()
     val clearSearchText: LiveData<Event<Boolean>>
         get() = _clearSearchText
@@ -21,10 +25,6 @@ class GameSearchViewModel : BaseViewModel() {
     private val _showKeyboard = MutableLiveData<Event<Boolean>>()
     val showKeyboard: LiveData<Event<Boolean>>
         get() = _showKeyboard
-
-    fun back(){
-        _back.value = Event(true)
-    }
 
     fun onClearSearchText() {
         _clearSearchText.value = Event(true)

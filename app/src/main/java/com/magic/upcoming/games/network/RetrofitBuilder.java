@@ -3,7 +3,7 @@ package com.magic.upcoming.games.network;
 import android.os.Environment;
 
 import com.androidnetworking.interceptors.HttpLoggingInterceptor;
-import com.magic.upcoming.games.conts.GameConts;
+import com.magic.upcoming.games.constant.GameConts;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;

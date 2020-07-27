@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.magic.upcoming.games.R
+import com.magic.upcoming.games.activity.filter.GameFilterActivity
 import com.magic.upcoming.games.activity.game.GameSearchActivity
 import com.magic.upcoming.games.base.BaseFragment
 import com.magic.upcoming.games.databinding.FragmentGameMainBinding
@@ -30,6 +31,12 @@ class GameMainFragment: BaseFragment<FragmentGameMainBinding, GameMainViewModel>
         viewModel?.search?.observe(viewLifecycleOwner, Observer {
             it.getContentIfNotHandled()?.let {
                 startActivity(Intent(context, GameSearchActivity::class.java))
+            }
+        })
+
+        viewModel?.filter?.observe(viewLifecycleOwner, Observer {
+            it.getContentIfNotHandled()?.let {
+                startActivity(Intent(context, GameFilterActivity::class.java))
             }
         })
     }

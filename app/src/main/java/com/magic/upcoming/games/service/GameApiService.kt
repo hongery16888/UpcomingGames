@@ -1,13 +1,11 @@
 package com.magic.upcoming.games.service
 
-import com.magic.upcoming.games.conts.GameConts
 import com.magic.upcoming.games.model.game.GameDetailModel
 import com.magic.upcoming.games.model.translate.TranslateModel
 import com.magic.upcoming.games.network.response.BaseResponse
 import io.reactivex.Flowable
 import okhttp3.ResponseBody
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -29,4 +27,6 @@ interface GameApiService {
             @Query("api_key") apiKey: String,
             @Query("format") format: String
     ): Flowable<BaseResponse<GameDetailModel>>
+
+
 }

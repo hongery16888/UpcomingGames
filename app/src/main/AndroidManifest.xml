@@ -45,6 +45,9 @@
 
         <activity android:name=".activity.game.GameSearchActivity"
             android:screenOrientation="portrait"/>
+
+        <activity android:name=".activity.filter.GameFilterActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

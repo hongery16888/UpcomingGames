@@ -33,6 +33,7 @@
     -->
     <list>
 <!--        <mapping class="net.magic.fitness.cookbook.model.HistorySearch" />-->
+        <mapping class="com.magic.upcoming.games.orm.GameFilterOptions" />
     </list>
 
     <!--

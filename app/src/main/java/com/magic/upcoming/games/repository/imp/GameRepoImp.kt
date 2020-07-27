@@ -1,6 +1,5 @@
 package com.magic.upcoming.games.repository.imp
 
-import com.magic.upcoming.games.conts.GameConts
 import com.magic.upcoming.games.model.game.GameDetailModel
 import com.magic.upcoming.games.model.translate.TranslateModel
 import com.magic.upcoming.games.network.RetrofitBuilder

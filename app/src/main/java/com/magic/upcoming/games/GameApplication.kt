@@ -1,7 +1,9 @@
 package com.magic.upcoming.games
 
 import com.magic.upcoming.games.base.BaseApplication
+import com.magic.upcoming.games.orm.GameFilterOptions
 import org.litepal.LitePal
+import org.litepal.extension.find
 
 class GameApplication : BaseApplication() {
 
@@ -10,7 +12,10 @@ class GameApplication : BaseApplication() {
 
         instance = this
 
-        LitePal.initialize(this);
+        LitePal.initialize(this)
+
+        if (LitePal.find<GameFilterOptions>(1) == null)
+            GameFilterOptions().save()
     }
 
     companion object {
