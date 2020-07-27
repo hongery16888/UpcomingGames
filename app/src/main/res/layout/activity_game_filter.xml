@@ -210,6 +210,7 @@
                             android:layout_marginStart="@dimen/margin_large"
                             android:layout_marginTop="@dimen/margin_normal"
                             android:hint="@string/start_date"
+                            android:visibility="@{viewModel.dateType == ReleaseDateType.CustomDate ? View.VISIBLE : View.GONE}"
                             app:boxCornerRadiusBottomEnd="@dimen/corner_radius"
                             app:boxCornerRadiusBottomStart="@dimen/corner_radius"
                             app:boxCornerRadiusTopEnd="@dimen/corner_radius"
@@ -221,6 +222,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:digits="0123456789/"
+                                android:text="@{viewModel.startData}"
                                 android:imeOptions="actionNext"
                                 android:inputType="date"
                                 android:maxLength="10" />
@@ -234,6 +236,7 @@
                             android:layout_marginStart="@dimen/margin_large"
                             android:layout_marginTop="@dimen/margin_normal"
                             android:hint="@string/end_date"
+                            android:visibility="@{viewModel.dateType == ReleaseDateType.CustomDate ? View.VISIBLE : View.GONE}"
                             app:boxCornerRadiusBottomEnd="@dimen/corner_radius"
                             app:boxCornerRadiusBottomStart="@dimen/corner_radius"
                             app:boxCornerRadiusTopEnd="@dimen/corner_radius"
@@ -245,6 +248,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:digits="0123456789/"
+                                android:text="@{viewModel.endData}"
                                 android:imeOptions="actionDone"
                                 android:inputType="date"
                                 android:maxLength="10"/>
@@ -318,6 +322,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/margin_large"
                             android:layout_marginTop="@dimen/margin_normal"
+                            android:visibility="@{viewModel.platformType == PlatformType.PickFromList ? View.VISIBLE : View.GONE}"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
                     </LinearLayout>

@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.magic.upcoming.games.viewmodel.GameMainViewModel" />
+            type="com.magic.upcoming.games.viewmodel.game.GameMainViewModel" />
     </data>
 
     <RelativeLayout

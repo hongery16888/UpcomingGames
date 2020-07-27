@@ -9,6 +9,7 @@ import com.magic.upcoming.games.constant.PlatformType
 import com.magic.upcoming.games.constant.ReleaseDateType
 import com.magic.upcoming.games.constant.SortDirection
 import com.magic.upcoming.games.orm.OrmGameApi
+import com.magic.upcoming.games.utils.FilterFormatUtils
 
 @BindingAdapter("sortDirection")
 fun RadioGroup.bindSortDirection(sortDirection: SortDirection) {
@@ -45,7 +46,6 @@ fun RadioGroup.setSortDirectionListeners(listener: InverseBindingListener) {
 
 @BindingAdapter("releaseDateType")
 fun RadioGroup.bindReleaseDateType(dateType: ReleaseDateType) {
-    println("------------------>ReleaseDateType : $dateType")
     val newCheckedId = when (dateType) {
         ReleaseDateType.RecentAndUpcoming -> R.id.new_and_upcoming_releases_radioButton
         ReleaseDateType.PastMonth -> R.id.past_month_radioButton
@@ -55,6 +55,7 @@ fun RadioGroup.bindReleaseDateType(dateType: ReleaseDateType) {
     }
 
     OrmGameApi.gameFilterOptions?.releaseDateTypeName = dateType.name
+    FilterFormatUtils.fetchDateConstraints(dateType)
 
     // Prevent infinite loops
     if (checkedRadioButtonId != newCheckedId) {
@@ -83,7 +84,6 @@ fun RadioGroup.setReleaseDateTypeListeners(listener: InverseBindingListener) {
 
 @BindingAdapter("platformType")
 fun RadioGroup.bindPlatformType(platformType: PlatformType) {
-    println("------------------>PlatformType : $platformType")
     val newCheckedId = when (platformType) {
         PlatformType.CurrentGeneration -> R.id.current_generation_radioButton
         PlatformType.All -> R.id.all_platforms_radioButton
@@ -91,6 +91,7 @@ fun RadioGroup.bindPlatformType(platformType: PlatformType) {
     }
 
     OrmGameApi.gameFilterOptions?.platformTypeName = platformType.name
+    FilterFormatUtils.fetchPlatformIndices(platformType)
 
     // Prevent infinite loops
     if (checkedRadioButtonId != newCheckedId) {

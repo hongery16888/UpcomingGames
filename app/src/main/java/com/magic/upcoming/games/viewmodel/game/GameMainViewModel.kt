@@ -1,4 +1,4 @@
-package com.magic.upcoming.games.viewmodel
+package com.magic.upcoming.games.viewmodel.game
 
 import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
@@ -42,12 +42,22 @@ class GameMainViewModel : BaseViewModel() {
     @SuppressLint("CheckResult")
     fun gameList(){
 
-        RepositoryFactory.getGameRepo().gameDetail("3030-5")
+//        RepositoryFactory.getGameRepo().gameDetail("3030-5")
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe({
+//                    println("------------------>Id : ${it.result?.gameId}")
+//                    println("------------------>onSuccess : ${it.result?.gameGuid}   :  Name : ${it.result?.gameName}")
+//                }, {
+//                    println("------------------>Throwable : ${it.message}")
+//                })
+
+        RepositoryFactory.getGameRepo().gameList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    println("------------------>Id : ${it.gameId}")
-                    println("------------------>onSuccess : ${it.gameGuid}   :  Name : ${it.gameName}")
+                    println("------------------>OnSuccess : ${it.totalResults}")
+                    println("------------------>Game Size : ${it.result?.size}")
                 }, {
                     println("------------------>Throwable : ${it.message}")
                 })

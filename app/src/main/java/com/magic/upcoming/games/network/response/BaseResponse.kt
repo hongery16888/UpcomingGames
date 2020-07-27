@@ -14,6 +14,7 @@ class BaseResponse<T> {
     var offset = 0
     var version: String? = null
     fun setResults(results: T) {
+        println("------------------>Result : " + results.toString())
         this.results = results
     }
 

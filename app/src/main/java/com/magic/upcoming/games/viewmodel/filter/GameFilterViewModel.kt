@@ -31,9 +31,32 @@ class GameFilterViewModel : BaseViewModel() {
     var sortDirection:ObservableField<SortDirection> = ObservableField(enumValueOf<SortDirection>(OrmGameApi.gameFilterOptions?.sortDirectionName!!))
     var dateType : ObservableField<ReleaseDateType> = ObservableField(enumValueOf<ReleaseDateType>(OrmGameApi.gameFilterOptions?.releaseDateTypeName!!))
     var platformType: ObservableField<PlatformType> = ObservableField(enumValueOf<PlatformType>(OrmGameApi.gameFilterOptions?.platformTypeName!!))
-//    var sortDirection: SortDirection = SortDirection.Ascending
+    var startData: ObservableField<String> = ObservableField(OrmGameApi.gameFilterOptions?.releastStartData!!)
+    var endData: ObservableField<String> = ObservableField(OrmGameApi.gameFilterOptions?.releastEndData!!)
 
-    fun change(){
+    private val _updateDataType = MutableLiveData<Event<Boolean>>()
+    val updateDataType: LiveData<Event<Boolean>>
+        get() = _updateDataType
 
+    fun onUpdateDataType(
+            startDateError: String?,
+            startDateText: String?,
+            endDateError: String?,
+            endDateText: String?
+    ) {
+        if (dateType.get() == ReleaseDateType.CustomDate) {
+            if (startDateError == null && !startDateText.isNullOrBlank()
+                    && endDateError == null && !endDateText.isNullOrBlank()
+            ) {
+                // Custom date range with valid date inputs.
+                _updateDataType.value = Event(true)
+            } else {
+                // Custom date range with invalid date inputs.
+                _updateDataType.value = Event(false)
+            }
+        } else {
+            // If not using custom date range, inputs are always valid.
+            _updateDataType.value = Event(true)
+        }
     }
 }

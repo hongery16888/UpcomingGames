@@ -11,11 +11,6 @@ import com.magic.upcoming.games.repository.imp.GameRepoImp;
  */
 
 public class RepositoryFactory {
-
-//    public static TranslateRepo getTranslateRepo(Context context){
-//        return TranslateRepoImp_.getInstance_(context);
-//    }
-
     public static GameRepo getGameRepo() {
         return GameRepoImp.getInstance();
     }
