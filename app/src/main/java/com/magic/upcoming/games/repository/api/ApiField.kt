@@ -19,5 +19,13 @@ enum class ApiField(val field: String) {
     Genres("genres"),
     Deck("deck"),
     DetailUrl("site_detail_url"),
-    DateLastUpdated("date_last_updated")
+    DateLastUpdated("date_last_updated"),
+    VideoLengthSeconds("length_seconds"),
+    VideoPublishDate("publish_date"),
+    VideoUser("user"),
+    VideoYoutubeId("youtube_id"),
+    VideoType("video_type"),
+    VideoHDUrl("hd_url"),
+    VideoHighUrl("high_url"),
+    VideoLowUrl("low_url")
 }

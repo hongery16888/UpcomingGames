@@ -7,7 +7,7 @@
         <import type="android.view.View" />
         <variable
             name="viewModel"
-            type="com.magic.upcoming.games.viewmodel.game.GameMainViewModel" />
+            type="com.magic.upcoming.games.viewmodel.video.GameVideoViewModel" />
     </data>
 
     <RelativeLayout
@@ -17,71 +17,21 @@
         android:background="@color/colorBackground"
         tools:context="com.magic.upcoming.games.fragment.GameMainFragment">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/search_cardView"
+        <TextView
+            android:id="@+id/title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_small"
-            android:layout_marginTop="@dimen/margin_small"
-            android:layout_marginEnd="@dimen/margin_small"
-            android:layout_alignParentTop="true"
-            app:cardElevation="4dp"
-            app:contentPadding="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <com.magic.upcoming.games.view.FTextView
-                    android:id="@+id/search_textView"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:drawableStart="@drawable/ic_search"
-                    android:drawablePadding="16dp"
-                    android:drawableTint="?attr/colorOnBackground"
-                    android:onClick="@{() -> viewModel.search()}"
-                    android:text="@string/search_all_games"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                    android:textColor="?attr/colorOnBackgroundVeryHighContrast" />
-
-                <ImageButton
-                    android:id="@+id/favorite_imageButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginEnd="@dimen/margin_extra_small"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="@string/favorites"
-                    android:onClick="@{() -> viewModel.favorite()}"
-                    android:padding="4dp"
-                    android:src="@drawable/ic_star"
-                    android:tint="?attr/colorOnBackground" />
-
-                <ImageButton
-                    android:id="@+id/filter_imageButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="@string/filter"
-                    android:onClick="@{() -> viewModel.filter()}"
-                    android:padding="4dp"
-                    android:src="@drawable/ic_filter"
-                    android:tint="?attr/colorOnBackground" />
-
-            </LinearLayout>
-
-        </com.google.android.material.card.MaterialCardView>
+            android:layout_height="?attr/actionBarSize"
+            android:gravity="center"
+            android:background="@null"
+            android:text="@string/game_video_title"
+            android:textSize="20sp"/>
 
         <com.scwang.smart.refresh.layout.SmartRefreshLayout
             android:id="@+id/refreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/white"
-            android:layout_below="@id/search_cardView"
+            android:layout_below="@id/title"
             android:layout_above="@id/bottom_horizontal_line_view"
             app:srlAccentColor="@android:color/white"
             app:srlEnableHeaderTranslationContent="false"
@@ -93,14 +43,14 @@
                 android:layout_height="wrap_content"/>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/game_recyclerView"
+                android:id="@+id/video_recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:scrollbars="none"
                 android:background="@color/colorBackground"
-                android:clipToPadding="false"
                 android:overScrollMode="never"
-                android:padding="6dp"
-                android:scrollbars="vertical" />
+                android:paddingStart="@dimen/dp_10"
+                android:paddingEnd="@dimen/dp_10"/>
 
             <com.scwang.smart.refresh.footer.ClassicsFooter
                 android:layout_width="match_parent"

@@ -19,16 +19,23 @@ open class ResponseApi {
                     "${ApiField.Genres.field},${ApiField.Deck.field},${ApiField.DetailUrl.field}"
 
         val gameListSort: String
-            get() = "${ApiField.OriginalReleaseDate.field}:" + enumValueOf<SortDirection>(OrmGameApi.gameFilterOptions?.sortDirectionName!!).direction + ","
+            get() = "${ApiField.OriginalReleaseDate.field}:" + enumValueOf<SortDirection>(OrmGameApi.gameFilterOptions?.sortDirectionName!!).direction
 
         val gameListFilter: String
             get() = "${ApiField.OriginalReleaseDate.field}:${OrmGameApi.gameFilterOptions?.releaseStartDataNet}|${OrmGameApi.gameFilterOptions?.releaseEndDataNet}"
 
-//        val gameListFieldList: String
-//            get() = "${ApiField.Id.field},${ApiField.Guid.field},${ApiField.Name.field},${ApiField.Image.field}"
         val gameListFieldList: String
             get() = "${ApiField.Id.field},${ApiField.Guid.field},${ApiField.Name.field},${ApiField.Image.field},${ApiField.Platforms.field}," +
                     "${ApiField.OriginalReleaseDate.field},${ApiField.ExpectedReleaseDay.field},${ApiField.ExpectedReleaseMonth.field}," +
                     "${ApiField.ExpectedReleaseYear.field},${ApiField.ExpectedReleaseQuarter.field}"
+
+        val videoListSort: String
+            get() =  "${ApiField.OriginalReleaseDate.field}:${SortDirection.Descending.direction}"
+
+        val videoListFieldList: String
+            get() = "${ApiField.Id.field},${ApiField.Guid.field},${ApiField.Name.field},${ApiField.Image.field}," +
+                    "${ApiField.VideoLengthSeconds.field},${ApiField.VideoPublishDate.field},${ApiField.DetailUrl.field}," +
+                    "${ApiField.VideoUser.field},${ApiField.VideoYoutubeId.field},${ApiField.VideoType.field}," +
+                    "${ApiField.Deck.field},${ApiField.VideoHDUrl.field},${ApiField.VideoHighUrl.field},${ApiField.VideoLowUrl.field}"
     }
 }

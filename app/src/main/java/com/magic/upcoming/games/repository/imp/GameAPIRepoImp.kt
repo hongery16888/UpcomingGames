@@ -5,6 +5,7 @@ import com.magic.upcoming.games.model.game.GameDetailModel
 import com.magic.upcoming.games.model.game.GameModel
 import com.magic.upcoming.games.model.search.SearchResult
 import com.magic.upcoming.games.model.translate.TranslateModel
+import com.magic.upcoming.games.model.video.VideoModel
 import com.magic.upcoming.games.network.RetrofitBuilder
 import com.magic.upcoming.games.network.rx.BaseResponseFunc1
 import com.magic.upcoming.games.repository.api.GameAPIRepo
@@ -40,6 +41,10 @@ class GameAPIRepoImp : GameAPIRepo {
 
     override fun searchList(keyword:String, limit: Int, page: Int, fieldList: String, resource: String, apiKey: String, format: String): Flowable<BaseModel<ArrayList<SearchResult>>> {
         return initService()!!.getSearchListData(keyword, limit, page, fieldList, resource, apiKey, format).flatMap(BaseResponseFunc1())
+    }
+
+    override fun videoList(offset: Int, limit: Int, sort: String, fieldList: String, apiKey: String, format: String): Flowable<BaseModel<ArrayList<VideoModel>>> {
+        return initService()!!.getVideoListData(offset, limit, sort, fieldList, apiKey, format).flatMap(BaseResponseFunc1())
     }
 
     companion object {

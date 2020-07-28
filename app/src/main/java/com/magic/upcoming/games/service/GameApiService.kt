@@ -4,6 +4,7 @@ import com.magic.upcoming.games.model.game.GameDetailModel
 import com.magic.upcoming.games.model.game.GameModel
 import com.magic.upcoming.games.model.search.SearchResult
 import com.magic.upcoming.games.model.translate.TranslateModel
+import com.magic.upcoming.games.model.video.VideoModel
 import com.magic.upcoming.games.network.response.BaseResponse
 import io.reactivex.Flowable
 import okhttp3.ResponseBody
@@ -54,11 +55,11 @@ interface GameApiService {
 
     @GET("videos")
     fun getVideoListData(
+            @Query("offset") offset: Int,
             @Query("limit") limit: Int,
-            @Query("page") page: Int,
+            @Query("sort") sort: String,
             @Query("field_list") fieldList: String,
-            @Query("resources") resources: String,
             @Query("api_key") apiKey: String,
             @Query("format") format: String
-    ): Flowable<BaseResponse<ArrayList<SearchResult>>>
+    ): Flowable<BaseResponse<ArrayList<VideoModel>>>
 }

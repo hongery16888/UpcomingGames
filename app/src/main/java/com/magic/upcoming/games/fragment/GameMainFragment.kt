@@ -16,8 +16,7 @@ import kotlin.collections.ArrayList
 
 class GameMainFragment: BaseFragment<FragmentGameMainBinding, GameMainViewModel>() {
 
-    private var adapter: GameListAdapter? = null
-    var gameListModel = BaseModel<ArrayList<GameModel>>()
+    lateinit var adapter: GameListAdapter
     private var isRefresh: Boolean = true
 
     override val layoutId: Int
@@ -60,10 +59,9 @@ class GameMainFragment: BaseFragment<FragmentGameMainBinding, GameMainViewModel>
 
         viewModel?.gameList?.observe(viewLifecycleOwner, Observer {
             it.getContentIfNotHandled()?.let { model ->
-                gameListModel = model
                 model.result?.let { date ->
-                    if (isRefresh) adapter?.items?.clear()
-                    adapter?.items?.addAll(date)
+                    if (isRefresh) adapter.items.clear()
+                    adapter.items.addAll(date)
                 }
             }
         })
@@ -73,10 +71,10 @@ class GameMainFragment: BaseFragment<FragmentGameMainBinding, GameMainViewModel>
             viewModel?.gameList(0)
         }
         binding?.refreshLayout?.setOnLoadMoreListener {
-            if (adapter?.items == null || adapter?.items?.size == 0)
+            if (adapter.items.size == 0)
                 viewModel?.loadingStatus()
             isRefresh = false
-            viewModel?.gameList(adapter?.items?.size!! + 1)
+            viewModel?.gameList(adapter.items.size + 1)
         }
     }
 

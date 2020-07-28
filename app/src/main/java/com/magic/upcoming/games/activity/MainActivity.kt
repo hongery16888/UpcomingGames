@@ -9,6 +9,7 @@ import com.magic.upcoming.games.R
 import com.magic.upcoming.games.base.BaseFragmentAdapter
 import com.magic.upcoming.games.fragment.FavoriteFragment
 import com.magic.upcoming.games.fragment.GameMainFragment
+import com.magic.upcoming.games.fragment.GameVideoFragment
 import com.magic.upcoming.games.repository.RepositoryFactory
 import com.magic.upcoming.games.view.VerticalViewpager
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         list.add(GameMainFragment())
-        list.add(FavoriteFragment())
+        list.add(GameVideoFragment())
         list.add(FavoriteFragment())
         list.add(FavoriteFragment())
 

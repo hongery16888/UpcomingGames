@@ -1,5 +1,6 @@
 package com.magic.upcoming.games.utilities
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.View
 import android.widget.ImageView
@@ -22,7 +23,6 @@ import com.magic.upcoming.games.orm.OrmGameApi
 import com.magic.upcoming.games.utils.FilterFormatUtils
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 @BindingAdapter("sortDirection")
 fun RadioGroup.bindSortDirection(sortDirection: SortDirection) {
@@ -163,11 +163,11 @@ fun ImageView.bindImageTypeIcon(type: String?) {
             .into(this)
 }
 
-@BindingAdapter("avatar")
+@BindingAdapter("avatarImg")
 fun ImageView.bindAvatarImage(img: String?) {
     val random = Random()
     Glide.with(context)
-            .load(allDefaultAvatar[random.nextInt(20)])
+            .load(allDefaultAvatar[random.nextInt(20)].image)
             .fitCenter()
             .apply(
                     RequestOptions()
@@ -219,10 +219,15 @@ fun TextView.formatReleaseDateString(
     }
 }
 
-@BindingAdapter("publishDate")
+@SuppressLint("SimpleDateFormat")
+@BindingAdapter("formatPublishDate")
 fun TextView.formatPublishDateString(publishDate: String?){
+    val date = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(publishDate!!)
     val calendar: Calendar = Calendar.getInstance()
-    calendar.timeInMillis = releaseDateInMillis ?: -1
+    calendar.timeInMillis = date?.time ?: -1
+
+    val desiredPatternFormatter = SimpleDateFormat("MMMM d, yyyy", Locale.US)
+    text =desiredPatternFormatter.format(calendar.time)
 }
 
 fun fetchReleaseDateInMillis(

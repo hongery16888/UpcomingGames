@@ -5,6 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.text.TextUtils" />
+        <import type="android.view.View" />
         <import type="com.magic.upcoming.games.listener.BindingClickListener" />
         <variable
             name="video"
@@ -15,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="@dimen/dp_20">
+        android:layout_marginBottom="@dimen/dp_20">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/image_cardView"
@@ -57,39 +59,45 @@
             android:id="@+id/avatar"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/avatar1"
+            avatarImg="@{video.user}"
             android:layout_marginTop="@dimen/dp_5"
             app:layout_constraintTop_toBottomOf="@id/image_cardView"
-            app:border_color="#FF7F24"
-            app:border_width="4dp"
+            app:border_color="@color/avatar_border"
+            app:border_width="2dp"
             app:is_circle="true"
             tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/title_textView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:paddingTop="2dp"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginEnd="@dimen/dp_10"
             android:text="@{video.videoName}"
-            android:maxLines="2"
+            android:lines="1"
             android:ellipsize="end"
             android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="@id/avatar"
-            app:layout_constraintLeft_toRightOf="@id/avatar"
+            app:layout_constraintStart_toEndOf="@id/avatar"
+            app:layout_constraintEnd_toStartOf="@id/video_type"
             app:layout_constraintTop_toBottomOf="@id/image_cardView"
             tools:text="Cyberpunk 2077" />
 
         <TextView
             android:id="@+id/release_date_textView"
+            formatPublishDate="@{video.publishDate}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_10"
             android:textSize="13sp"
             app:layout_constraintLeft_toRightOf="@id/avatar"
             app:layout_constraintTop_toBottomOf="@id/title_textView"
             tools:text="September 19, 2020" />
 
         <TextView
+            android:id="@+id/video_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/dp_5"
@@ -97,6 +105,8 @@
             android:paddingStart="@dimen/dp_10"
             android:paddingEnd="@dimen/dp_10"
             android:layout_marginEnd="@dimen/dp_10"
+            android:text="@{video.videoType}"
+            android:visibility="@{TextUtils.isEmpty(video.videoType) ? View.GONE : View.VISIBLE}"
             android:background="@drawable/rounded_corner_background"
             app:layout_constraintTop_toTopOf="@id/avatar"
             app:layout_constraintBottom_toBottomOf="@id/avatar"
