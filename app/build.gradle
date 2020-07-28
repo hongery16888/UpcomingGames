@@ -99,6 +99,7 @@ dependencies {
 
     implementation 'me.codeboy.android:cycle-view-pager:2.0.0'
     implementation 'com.hjq:xxpermissions:6.0'
+    implementation 'com.github.SheHuan:NiceImageView:1.0.5'
 
     api('com.alibaba.android:vlayout:1.2.8@aar') {
         transitive = true

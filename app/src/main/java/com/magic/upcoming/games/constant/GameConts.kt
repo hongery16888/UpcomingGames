@@ -1,5 +1,7 @@
 package com.magic.upcoming.games.constant
 
+import com.magic.upcoming.games.R
+
 const val NO_IMG_FILE_NAME = "gb_default-16_9"
 
 val currentGenerationPlatformRange = IntRange(0, 14)
@@ -197,6 +199,31 @@ val allKnownPlatforms = arrayListOf(
         Platform("EVER", "Evercade"),
         Platform("AMIC", "Amico"),
         Platform("NONE", "No platforms"))
+
+data class Avatar(val image:Int)
+
+val allDefaultAvatar = arrayListOf(
+        Avatar(R.drawable.avatar1),
+        Avatar(R.drawable.avatar2),
+        Avatar(R.drawable.avatar3),
+        Avatar(R.drawable.avatar4),
+        Avatar(R.drawable.avatar5),
+        Avatar(R.drawable.avatar6),
+        Avatar(R.drawable.avatar7),
+        Avatar(R.drawable.avatar8),
+        Avatar(R.drawable.avatar9),
+        Avatar(R.drawable.avatar10),
+        Avatar(R.drawable.avatar11),
+        Avatar(R.drawable.avatar12),
+        Avatar(R.drawable.avatar13),
+        Avatar(R.drawable.avatar14),
+        Avatar(R.drawable.avatar15),
+        Avatar(R.drawable.avatar16),
+        Avatar(R.drawable.avatar17),
+        Avatar(R.drawable.avatar18),
+        Avatar(R.drawable.avatar19),
+        Avatar(R.drawable.avatar20)
+)
 
 enum class DateFormat(val formatCode: Int) {
     Exact(0),

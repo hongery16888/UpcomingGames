@@ -51,4 +51,14 @@ interface GameApiService {
             @Query("api_key") apiKey: String,
             @Query("format") format: String
     ): Flowable<BaseResponse<ArrayList<SearchResult>>>
+
+    @GET("videos")
+    fun getVideoListData(
+            @Query("limit") limit: Int,
+            @Query("page") page: Int,
+            @Query("field_list") fieldList: String,
+            @Query("resources") resources: String,
+            @Query("api_key") apiKey: String,
+            @Query("format") format: String
+    ): Flowable<BaseResponse<ArrayList<SearchResult>>>
 }

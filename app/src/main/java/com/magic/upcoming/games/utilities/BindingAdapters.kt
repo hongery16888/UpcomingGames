@@ -163,6 +163,20 @@ fun ImageView.bindImageTypeIcon(type: String?) {
             .into(this)
 }
 
+@BindingAdapter("avatar")
+fun ImageView.bindAvatarImage(img: String?) {
+    val random = Random()
+    Glide.with(context)
+            .load(allDefaultAvatar[random.nextInt(20)])
+            .fitCenter()
+            .apply(
+                    RequestOptions()
+                            .placeholder(R.drawable.loading_animation)
+                            .error(R.drawable.broken_image)
+            )
+            .into(this)
+}
+
 @BindingAdapter("releaseDateInMillis", "dateFormat", "inGameDetailFragment")
 fun TextView.formatReleaseDateString(
         releaseDateInMillis: Long?,
@@ -203,6 +217,12 @@ fun TextView.formatReleaseDateString(
             }
         }
     }
+}
+
+@BindingAdapter("publishDate")
+fun TextView.formatPublishDateString(publishDate: String?){
+    val calendar: Calendar = Calendar.getInstance()
+    calendar.timeInMillis = releaseDateInMillis ?: -1
 }
 
 fun fetchReleaseDateInMillis(
