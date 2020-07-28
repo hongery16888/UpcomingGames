@@ -43,10 +43,13 @@
         <activity android:name=".activity.MainActivity"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".activity.game.GameSearchActivity"
+        <activity android:name=".activity.search.GameSearchActivity"
             android:screenOrientation="portrait"/>
 
         <activity android:name=".activity.filter.GameFilterActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".activity.game.GameDetailActivity"
             android:screenOrientation="portrait"/>
     </application>
 

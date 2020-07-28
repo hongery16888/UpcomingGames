@@ -1,5 +1,9 @@
 package com.magic.upcoming.games.constant
 
+const val NO_IMG_FILE_NAME = "gb_default-16_9"
+
+val currentGenerationPlatformRange = IntRange(0, 14)
+
 object GameConts {
     const val BASE_PATH = "https://fy.iciba.com/"
     const val GIANT_BOMB_BASE_PATH = "https://www.giantbomb.com/api/"
@@ -26,8 +30,6 @@ enum class PlatformType {
 }
 
 data class Platform(val abbreviation: String, val fullName: String)
-
-val currentGenerationPlatformRange = IntRange(0, 14)
 
 val allKnownPlatforms = arrayListOf(
         Platform("PC", "PC"),
@@ -195,4 +197,23 @@ val allKnownPlatforms = arrayListOf(
         Platform("EVER", "Evercade"),
         Platform("AMIC", "Amico"),
         Platform("NONE", "No platforms"))
+
+enum class DateFormat(val formatCode: Int) {
+    Exact(0),
+    Month(1),
+    Quarter(2),
+    Year(3),
+    None(4)
+}
+
+enum class NetworkState {
+    Loading,
+    Failure,
+    Success
+}
+
+enum class IconType(val type:String) {
+    Game("game"),
+    Video("video")
+}
 

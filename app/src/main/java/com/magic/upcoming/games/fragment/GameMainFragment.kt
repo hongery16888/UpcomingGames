@@ -2,16 +2,23 @@ package com.magic.upcoming.games.fragment
 
 import android.content.Intent
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import com.magic.upcoming.games.R
 import com.magic.upcoming.games.activity.filter.GameFilterActivity
-import com.magic.upcoming.games.activity.game.GameSearchActivity
+import com.magic.upcoming.games.activity.search.GameSearchActivity
+import com.magic.upcoming.games.adapter.GameListAdapter
 import com.magic.upcoming.games.base.BaseFragment
 import com.magic.upcoming.games.databinding.FragmentGameMainBinding
-import com.magic.upcoming.games.listener.OnNetworkListener
+import com.magic.upcoming.games.model.base.BaseModel
+import com.magic.upcoming.games.model.game.GameModel
 import com.magic.upcoming.games.viewmodel.game.GameMainViewModel
-import java.util.*
+import kotlin.collections.ArrayList
 
-class GameMainFragment: BaseFragment<FragmentGameMainBinding, GameMainViewModel>(), OnNetworkListener<ArrayList<String>> {
+class GameMainFragment: BaseFragment<FragmentGameMainBinding, GameMainViewModel>() {
+
+    private var adapter: GameListAdapter? = null
+    var gameListModel = BaseModel<ArrayList<GameModel>>()
+    private var isRefresh: Boolean = true
 
     override val layoutId: Int
         get() = R.layout.fragment_game_main
@@ -23,7 +30,12 @@ class GameMainFragment: BaseFragment<FragmentGameMainBinding, GameMainViewModel>
     override fun initView() {
         binding?.lifecycleOwner = this
         binding?.viewModel = viewModel
-        binding?.viewModel?.gameList()
+
+        binding?.gameRecyclerView?.layoutManager = GridLayoutManager(context, 2)
+        adapter = GameListAdapter(requireContext())
+        binding?.gameRecyclerView?.adapter = adapter
+
+        binding?.viewModel?.gameList(0)
     }
 
     override fun setListener() {
@@ -38,15 +50,34 @@ class GameMainFragment: BaseFragment<FragmentGameMainBinding, GameMainViewModel>
                 startActivity(Intent(context, GameFilterActivity::class.java))
             }
         })
+
+        viewModel?.loadingStatus?.observe(viewLifecycleOwner, Observer {
+            it.getContentIfNotHandled()?.let {
+                binding?.refreshLayout?.finishRefresh()
+                binding?.refreshLayout?.finishLoadMore()
+            }
+        })
+
+        viewModel?.gameList?.observe(viewLifecycleOwner, Observer {
+            it.getContentIfNotHandled()?.let { model ->
+                gameListModel = model
+                model.result?.let { date ->
+                    if (isRefresh) adapter?.items?.clear()
+                    adapter?.items?.addAll(date)
+                }
+            }
+        })
+
+        binding?.refreshLayout?.setOnRefreshListener {
+            isRefresh = true
+            viewModel?.gameList(0)
+        }
+        binding?.refreshLayout?.setOnLoadMoreListener {
+            if (adapter?.items == null || adapter?.items?.size == 0)
+                viewModel?.loadingStatus()
+            isRefresh = false
+            viewModel?.gameList(adapter?.items?.size!! + 1)
+        }
     }
 
-    override fun onSuccess(data: ArrayList<String>) {
-    }
-
-    override fun onFailure(errorMsg: String?) {
-    }
-
-    override fun onResume() {
-        super.onResume()
-    }
 }

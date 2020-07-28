@@ -3,11 +3,11 @@ package com.magic.upcoming.games.repository.imp
 import com.magic.upcoming.games.model.base.BaseModel
 import com.magic.upcoming.games.model.game.GameDetailModel
 import com.magic.upcoming.games.model.game.GameModel
+import com.magic.upcoming.games.model.search.SearchResult
 import com.magic.upcoming.games.model.translate.TranslateModel
 import com.magic.upcoming.games.network.RetrofitBuilder
-import com.magic.upcoming.games.network.response.BaseResponse
 import com.magic.upcoming.games.network.rx.BaseResponseFunc1
-import com.magic.upcoming.games.repository.api.GameRepo
+import com.magic.upcoming.games.repository.api.GameAPIRepo
 import com.magic.upcoming.games.service.GameApiService
 import io.reactivex.Flowable
 import okhttp3.ResponseBody
@@ -16,7 +16,7 @@ import retrofit2.Call
 /**
  * Created by ThinkPad on 2017/11/2.
  */
-class GameRepoImp : GameRepo {
+class GameAPIRepoImp : GameAPIRepo {
     private var mRetrofitBuilder: RetrofitBuilder = RetrofitBuilder.getInstance()
     private var mGameApiService: GameApiService? = null
     private fun initService(): GameApiService? {
@@ -38,11 +38,15 @@ class GameRepoImp : GameRepo {
         return initService()!!.getGameListData(offset, limit, sort, filter, fieldList, apiKey, format).flatMap(BaseResponseFunc1())
     }
 
+    override fun searchList(keyword:String, limit: Int, page: Int, fieldList: String, resource: String, apiKey: String, format: String): Flowable<BaseModel<ArrayList<SearchResult>>> {
+        return initService()!!.getSearchListData(keyword, limit, page, fieldList, resource, apiKey, format).flatMap(BaseResponseFunc1())
+    }
+
     companion object {
         @JvmStatic
-        var instance: GameRepoImp? = null
+        var instance: GameAPIRepoImp? = null
             get() {
-                if (field == null) field = GameRepoImp()
+                if (field == null) field = GameAPIRepoImp()
                 return field
             }
             private set

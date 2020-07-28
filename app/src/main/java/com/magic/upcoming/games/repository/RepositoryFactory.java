@@ -1,9 +1,7 @@
 package com.magic.upcoming.games.repository;
 
-import android.content.Context;
-
-import com.magic.upcoming.games.repository.api.GameRepo;
-import com.magic.upcoming.games.repository.imp.GameRepoImp;
+import com.magic.upcoming.games.repository.api.GameAPIRepo;
+import com.magic.upcoming.games.repository.imp.GameAPIRepoImp;
 
 
 /**
@@ -11,7 +9,7 @@ import com.magic.upcoming.games.repository.imp.GameRepoImp;
  */
 
 public class RepositoryFactory {
-    public static GameRepo getGameRepo() {
-        return GameRepoImp.getInstance();
+    public static GameAPIRepo getGameApiRepo() {
+        return GameAPIRepoImp.getInstance();
     }
 }

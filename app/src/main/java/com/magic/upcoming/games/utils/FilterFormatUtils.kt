@@ -88,13 +88,9 @@ object FilterFormatUtils{
 
         OrmGameApi.gameFilterOptions?.releaseStartDataNet = formatGameListData(dateStartMillis)
         OrmGameApi.gameFilterOptions?.releaseEndDataNet = formatGameListData(dateEndMillis)
-        if (isSave){
-            println("------------------>save data : ${OrmGameApi.gameFilterOptions?.save()}")
-
-        }
     }
 
-    private fun formatGameListData(dateMills: Long?): String {
+    fun formatGameListData(dateMills: Long?): String {
         val calendar: Calendar = Calendar.getInstance()
         val desiredPatternFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.US)
         calendar.timeInMillis = dateMills!!

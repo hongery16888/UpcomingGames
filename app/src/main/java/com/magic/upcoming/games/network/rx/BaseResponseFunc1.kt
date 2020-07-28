@@ -9,8 +9,7 @@ import io.reactivex.functions.Function
 class BaseResponseFunc1<T> : Function<BaseResponse<T>, Flowable<BaseModel<T>>> {
     @Throws(Exception::class)
     override fun apply(response: BaseResponse<T>): Flowable<BaseModel<T>> {
-        println("------------------>$response")
-        return when(response.status_code){
+        return when(response.statusCode){
             100 -> Flowable.error(ResponseFailedException("Invalid API Key"))
             101 -> Flowable.error(ResponseFailedException("Object Not Found"))
             102 -> Flowable.error(ResponseFailedException("Error in URL Format"))
@@ -22,8 +21,8 @@ class BaseResponseFunc1<T> : Function<BaseResponse<T>, Flowable<BaseModel<T>>> {
                 baseModel.result = response.results
                 baseModel.limit = response.limit
                 baseModel.offset = response.offset
-                baseModel.resultsNum = response.number_of_page_results
-                baseModel.totalResults = response.number_of_total_results
+                baseModel.resultsNum = response.numberOfPageResults
+                baseModel.totalResults = response.numberOfTotalResults
                 Flowable.just(baseModel)
             }
             else -> Flowable.error(ResponseFailedException("Network Error"))

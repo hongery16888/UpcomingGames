@@ -1,14 +1,13 @@
 package com.magic.upcoming.games.service
 
-import com.magic.upcoming.games.model.base.BaseModel
 import com.magic.upcoming.games.model.game.GameDetailModel
 import com.magic.upcoming.games.model.game.GameModel
+import com.magic.upcoming.games.model.search.SearchResult
 import com.magic.upcoming.games.model.translate.TranslateModel
 import com.magic.upcoming.games.network.response.BaseResponse
 import io.reactivex.Flowable
 import okhttp3.ResponseBody
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -41,4 +40,15 @@ interface GameApiService {
             @Query("api_key") apiKey: String,
             @Query("format") format: String
     ): Flowable<BaseResponse<ArrayList<GameModel>>>
+
+    @GET("search")
+    fun getSearchListData(
+            @Query("query") keyword: String,
+            @Query("limit") limit: Int,
+            @Query("page") page: Int,
+            @Query("field_list") fieldList: String,
+            @Query("resources") resources: String,
+            @Query("api_key") apiKey: String,
+            @Query("format") format: String
+    ): Flowable<BaseResponse<ArrayList<SearchResult>>>
 }

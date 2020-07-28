@@ -14,7 +14,7 @@ open class GameModel  : BaseModel(){
     @SerializedName("image")
     var mainImage: GameImage? = null
     @SerializedName("platforms")
-    var platforms: String? = null
+    var platforms: ArrayList<GamePlatform>? = null
     @SerializedName("original_release_date")
     var originalReleaseDate: String? = null
     @SerializedName("expected_release_year")

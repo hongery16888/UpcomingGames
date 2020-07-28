@@ -1,6 +1,7 @@
 package com.magic.upcoming.games.base
 
 import android.app.Application
+import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.lifecycle.AndroidViewModel
 
@@ -11,4 +12,7 @@ abstract class BaseViewModel(application: Application  = BaseApplication.instanc
 
 //    abstract fun <T> getData(onNetworkListener: OnNetworkListener<T>? = null) : T
 
+    fun toast(mes: String?){
+        Toast.makeText(BaseApplication.instance, mes, Toast.LENGTH_LONG).show()
+    }
 }

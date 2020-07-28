@@ -1,11 +1,14 @@
-package com.magic.upcoming.games.viewmodel
+package com.magic.upcoming.games.viewmodel.search
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.magic.upcoming.games.base.BaseViewModel
+import com.magic.upcoming.games.model.search.SearchResult
+import com.magic.upcoming.games.repository.RepositoryFactory
 import com.magic.upcoming.games.utilities.Event
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.launch
 
 class GameSearchViewModel : BaseViewModel() {
@@ -14,7 +17,7 @@ class GameSearchViewModel : BaseViewModel() {
     val back: LiveData<Event<Boolean>>
         get() = _back
 
-    fun back(){
+    fun back() {
         _back.value = Event(true)
     }
 
@@ -34,9 +37,19 @@ class GameSearchViewModel : BaseViewModel() {
         _showKeyboard.value = Event(true)
     }
 
+    val searchResults = MutableLiveData<ArrayList<SearchResult>>()
+
     fun searchGameList(searchQuery: String) {
         viewModelScope.launch {
 //            searchResults.value = gameRepository.searchGameList(searchQuery)
+            RepositoryFactory.getGameApiRepo().searchList(searchQuery)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({
+                        searchResults.value = it.result
+                    }, {
+                        toast(it.message)
+                    })
         }
     }
 }
