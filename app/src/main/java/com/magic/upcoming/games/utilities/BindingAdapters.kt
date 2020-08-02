@@ -11,6 +11,7 @@ import androidx.core.widget.ContentLoadingProgressBar
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.magic.upcoming.games.R
@@ -20,6 +21,7 @@ import com.magic.upcoming.games.model.game.GameGeneric
 import com.magic.upcoming.games.model.game.GamePlatform
 import com.magic.upcoming.games.model.game.GameRating
 import com.magic.upcoming.games.orm.OrmGameApi
+import com.magic.upcoming.games.utils.DateUtils
 import com.magic.upcoming.games.utils.FilterFormatUtils
 import java.text.SimpleDateFormat
 import java.util.*
@@ -220,6 +222,12 @@ fun TextView.formatReleaseDateString(
 }
 
 @SuppressLint("SimpleDateFormat")
+@BindingAdapter("videoTimeFormat")
+fun TextView.formatVideoTimeString(videoTime: String?){
+    text = DateUtils.secondToTime(videoTime!!.toLong())
+}
+
+@SuppressLint("SimpleDateFormat")
 @BindingAdapter("formatPublishDate")
 fun TextView.formatPublishDateString(publishDate: String?){
     val date = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(publishDate!!)
@@ -346,3 +354,6 @@ fun ContentLoadingProgressBar.bindGameDetailProgressBarVisibility(detailNetworkS
         else -> hide()
     }
 }
+
+
+

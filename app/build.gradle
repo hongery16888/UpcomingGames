@@ -12,7 +12,7 @@ android {
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
-        versionName "1.0.1"
+        versionName "1.0.2"
 
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -105,7 +105,11 @@ dependencies {
         transitive = true
     }
 
+    implementation 'com.github.tohodog:QSVideoPlayer:2.2.8'
+
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.0"
     implementation "androidx.navigation:navigation-ui-ktx:2.3.0"
+
+    implementation 'com.pixplicity.htmlcompat:library:1.1.1'
 }

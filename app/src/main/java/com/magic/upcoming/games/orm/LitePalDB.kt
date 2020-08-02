@@ -16,7 +16,7 @@ object LitePalDB {
 
         if (LitePal.find<GameFilterOptions>(1) == null) {
             GameFilterOptions().apply {
-                sortDirectionName = SortDirection.Ascending.name
+                sortDirectionName = SortDirection.Descending.name
                 releaseDateTypeName = ReleaseDateType.RecentAndUpcoming.name
                 platformTypeName = PlatformType.CurrentGeneration.name
 

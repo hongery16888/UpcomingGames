@@ -26,6 +26,9 @@ class VideoModel {
     @SerializedName("site_detail_url")
     var siteDetailUrl:String? = null
 
+    @SerializedName("embed_player")
+    var embedPlayer:String? = null
+
     @SerializedName("user")
     var user:String? = null
 

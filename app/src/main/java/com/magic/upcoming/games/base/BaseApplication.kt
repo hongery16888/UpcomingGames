@@ -7,6 +7,7 @@ import android.os.Build
 import android.webkit.WebView
 import com.facebook.ads.AudienceNetworkAds
 import com.google.android.gms.ads.MobileAds
+import com.magic.upcoming.games.model.game.GameImage
 
 open class BaseApplication : Application() {
 

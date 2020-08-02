@@ -15,7 +15,7 @@ open class ResponseApi {
                     "${ApiField.OriginalReleaseDate.field},${ApiField.ExpectedReleaseDay.field}," +
                     "${ApiField.ExpectedReleaseMonth.field},${ApiField.ExpectedReleaseYear.field}," +
                     "${ApiField.ExpectedReleaseQuarter.field},${ApiField.OriginalGameRating.field}," +
-                    "${ApiField.Developers.field},${ApiField.Publishers.field}," +
+                    "${ApiField.Developers.field},${ApiField.Publishers.field},${ApiField.Description.field}," +
                     "${ApiField.Genres.field},${ApiField.Deck.field},${ApiField.DetailUrl.field}"
 
         val gameListSort: String
@@ -35,7 +35,7 @@ open class ResponseApi {
         val videoListFieldList: String
             get() = "${ApiField.Id.field},${ApiField.Guid.field},${ApiField.Name.field},${ApiField.Image.field}," +
                     "${ApiField.VideoLengthSeconds.field},${ApiField.VideoPublishDate.field},${ApiField.DetailUrl.field}," +
-                    "${ApiField.VideoUser.field},${ApiField.VideoYoutubeId.field},${ApiField.VideoType.field}," +
+                    "${ApiField.VideoUser.field},${ApiField.VideoYoutubeId.field},${ApiField.VideoType.field},${ApiField.EmbedPlayer.field}," +
                     "${ApiField.Deck.field},${ApiField.VideoHDUrl.field},${ApiField.VideoHighUrl.field},${ApiField.VideoLowUrl.field}"
     }
 }

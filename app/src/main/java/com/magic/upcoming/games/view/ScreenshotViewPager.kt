@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import androidx.viewpager.widget.ViewPager
 
-class DetailImageViewPager(context: Context, attr: AttributeSet? = null) : ViewPager(context, attr) {
+class ScreenshotViewPager(context: Context, attr: AttributeSet? = null) : ViewPager(context, attr) {
 
     override fun onInterceptHoverEvent(event: MotionEvent?): Boolean {
         return try {
@@ -14,5 +14,4 @@ class DetailImageViewPager(context: Context, attr: AttributeSet? = null) : ViewP
             false
         }
     }
-
 }

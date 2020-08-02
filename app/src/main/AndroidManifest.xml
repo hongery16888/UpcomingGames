@@ -51,6 +51,13 @@
 
         <activity android:name=".activity.game.GameDetailActivity"
             android:screenOrientation="portrait"/>
+
+        <activity android:name=".activity.game.ScreenshotActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".activity.video.VideoDetailActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

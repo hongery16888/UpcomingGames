@@ -55,4 +55,6 @@
     <string name="sort_release_dates_in_this_direction">Sort in this direction by release date</string>
     <string name="filter_results_by_game_platform">Filter results by game platform</string>
     <string name="game_video_title">Game Video</string>
+    <string name="screenshot_title">Screenshot</string>
+    <string name="description">Description</string>
 </resources>

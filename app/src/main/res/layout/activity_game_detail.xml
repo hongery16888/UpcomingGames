@@ -3,18 +3,27 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <import type="com.magic.upcoming.games.constant.NetworkState" />
+
         <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
         <variable
             name="releaseDateInMillis"
             type="Long" />
+
         <variable
             name="dateFormat"
             type="Integer" />
+
         <variable
-            name="gameDetial"
+            name="gameDetail"
             type="com.magic.upcoming.games.model.game.GameDetailModel" />
+
         <variable
             name="viewModel"
             type="com.magic.upcoming.games.viewmodel.game.GameDetailViewModel" />
@@ -133,7 +142,7 @@
 
                     <ImageView
                         android:id="@+id/main_imageView"
-                        imageUrl="@{viewModel.gameDetail.mainImageUrl.smallUrl}"
+                        imageUrl="@{viewModel.gameDetail.mainImageUrl.thumbUrl}"
                         android:layout_width="match_parent"
                         android:layout_height="170dp"
                         android:adjustViewBounds="true"
@@ -354,9 +363,40 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_normal"
-                    android:orientation="horizontal"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/summary_cardView" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:visibility="@{TextUtils.isEmpty(gameDetail.description) ? View.GONE : View.VISIBLE}"
+                    app:cardBackgroundColor="?attr/colorBackgroundVariant"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/screenshot_recyclerView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/margin_normal"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/description"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/richtext"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_normal"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
