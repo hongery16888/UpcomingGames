@@ -7,8 +7,11 @@ import android.view.View
 import android.view.WindowManager
 import android.webkit.*
 import android.webkit.WebChromeClient.CustomViewCallback
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.magic.upcoming.games.GameApplication
 import com.magic.upcoming.games.R
+import com.magic.upcoming.games.adapter.ScreenshotListAdapter
 import com.magic.upcoming.games.base.BaseActivity
 import com.magic.upcoming.games.databinding.ActivityVideoDetailBinding
 import com.magic.upcoming.games.model.video.VideoModel
@@ -23,10 +26,7 @@ class VideoDetailActivity : BaseActivity<ActivityVideoDetailBinding, VideoDetail
     private var mCustomView: View? = null
     private var mCustomViewCallback: CustomViewCallback? = null
     private val heads = HashMap<String, String>()
-
-    private var playFlag = false
-    private var position = 0
-    private val handler = Handler()
+    lateinit var adapter: ScreenshotListAdapter
 
     override val layoutId: Int
         get() = R.layout.activity_video_detail
@@ -37,11 +37,13 @@ class VideoDetailActivity : BaseActivity<ActivityVideoDetailBinding, VideoDetail
 
     override fun initView() {
         videoModel = GameApplication.instance?.videoModel!!
+        binding?.video = videoModel
         initWebView()
-//        Handler().postDelayed({
-//            binding?.webviewVideoPlayer?.loadUrl(videoModel.embedPlayer!!)
-//        }, 2000)
         binding?.webviewVideoPlayer?.loadUrl(videoModel.embedPlayer!!)
+
+        binding?.screenshotRecyclerView?.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
+        adapter = ScreenshotListAdapter(this)
+        binding?.screenshotRecyclerView?.adapter = adapter
     }
 
     override fun setListener() {
@@ -55,6 +57,7 @@ class VideoDetailActivity : BaseActivity<ActivityVideoDetailBinding, VideoDetail
         val settings: WebSettings = binding?.webviewVideoPlayer?.settings!!
         settings.javaScriptEnabled = true
         settings.javaScriptCanOpenWindowsAutomatically = true
+        settings.mediaPlaybackRequiresUserGesture = true;
         settings.pluginState = WebSettings.PluginState.ON
         //settings.setPluginsEnabled(true);
         settings.allowFileAccess = true
@@ -78,6 +81,7 @@ class VideoDetailActivity : BaseActivity<ActivityVideoDetailBinding, VideoDetail
         binding?.webviewVideoPlayer?.webChromeClient = object : WebChromeClient(){
             override fun onShowCustomView(view: View?, callback: CustomViewCallback?) {
                 super.onShowCustomView(view, callback)
+                println("------------------>ShowCustomView : $view")
                 if (mCustomView != null) {
                     callback?.onCustomViewHidden()
                     return
@@ -92,6 +96,7 @@ class VideoDetailActivity : BaseActivity<ActivityVideoDetailBinding, VideoDetail
 
             override fun onHideCustomView() {
                 binding?.webviewVideoPlayer?.visibility = View.VISIBLE
+                println("------------------>HideCustomView : $mCustomView")
                 if (mCustomView == null) {
                     return
                 }
@@ -123,6 +128,7 @@ class VideoDetailActivity : BaseActivity<ActivityVideoDetailBinding, VideoDetail
             window.clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
             window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
             binding?.scrollView?.visibility = View.GONE
+
         }
         else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
             window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
@@ -153,108 +159,5 @@ class VideoDetailActivity : BaseActivity<ActivityVideoDetailBinding, VideoDetail
         binding?.webviewVideoPlayer?.destroy()
         super.onDestroy()
     }
-
-    //    override fun initView() {
-//
-//        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-//
-//        videoModel = GameApplication.instance?.videoModel!!
-//        binding?.videoPlayer?.coverImageView?.setImageResource(R.drawable.ic_cover)
-//        binding?.videoPlayer?.layoutParams = LinearLayout.LayoutParams(-1, resources.displayMetrics.widthPixels * 9 / 16)
-//        //进入全屏的模式 0横屏 1竖屏 2传感器自动横竖屏 3根据视频比例自动确定横竖屏      -1什么都不做
-//        binding?.videoPlayer?.enterFullMode = 3
-//        //是否非全屏下也可以手势调节进度
-//        binding?.videoPlayer?.isWindowGesture = true
-//
-//        play(AndroidMedia::class.java)
-//    }
-//
-//    override fun setListener() {
-//        binding?.videoPlayer?.setPlayListener(object : PlayListener {
-//            var mode = 0
-//            override fun onMode(mode: Int) {
-//                this.mode = mode
-//            }
-//
-//            override fun onEvent(what: Int, vararg extra: Int?) {
-//                if (what == DemoQSVideoView.EVENT_CONTROL_VIEW && mode == IVideoPlayer.MODE_WINDOW_NORMAL) {
-//                    if (extra[0] == 0) //状态栏隐藏/显示
-//                        Util.CLEAR_FULL(this@VideoDetailActivity) else Util.SET_FULL(this@VideoDetailActivity)
-//                }
-//                //系统浮窗点击退出退出activity
-//                if (what == DemoQSVideoView.EVENT_CLICK_VIEW
-//                        && extra[0] == R.id.help_float_close) if (binding?.videoPlayer?.isSystemFloatMode!!) finish()
-//            }
-//
-//            override fun onStatus(status: Int) {
-//                if (status == IVideoPlayer.STATE_AUTO_COMPLETE) binding?.videoPlayer?.quitWindowFullscreen()
-//            }
-//        })
-//    }
-//
-//    private fun play(decodeMedia: Class<out BaseMedia?>) {
-//        binding?.videoPlayer?.release()
-//        binding?.videoPlayer?.setDecodeMedia(decodeMedia)
-//
-//        val qsVideos = ArrayList<QSVideo>()
-//        if (!videoModel.lowUrl.isNullOrEmpty())
-//            qsVideos.add(QSVideo.Build(videoModel.lowUrl + "?api_key=" + GameConts.GIANT_BOMB_API_KEY).title(videoModel.videoName).definition("Low").resolution("Low").build())
-//        if (!videoModel.highUrl.isNullOrEmpty())
-//            qsVideos.add(QSVideo.Build(videoModel.highUrl + "?api_key=" + GameConts.GIANT_BOMB_API_KEY).title(videoModel.videoName).definition("High").resolution("High").build())
-//        if (!videoModel.hdUrl.isNullOrEmpty())
-//            qsVideos.add(QSVideo.Build(videoModel.hdUrl + "?api_key=" + GameConts.GIANT_BOMB_API_KEY).title(videoModel.videoName).definition("HD").resolution("HD").build())
-//
-//        if (qsVideos.size > 0)
-//            binding?.videoPlayer?.setUp(qsVideos)
-//
-//        binding?.videoPlayer?.openCache()
-//
-//        binding?.videoPlayer?.play()
-//    }
-//
-//    private val runnable = Runnable {
-//        if (binding?.videoPlayer?.currentState != IVideoPlayer.STATE_AUTO_COMPLETE) position = binding?.videoPlayer?.position!!
-//        binding?.videoPlayer?.release()
-//    }
-//
-//    override fun onBackPressed() {
-//        if (binding?.videoPlayer?.onBackPressed()!!) {
-//            return
-//        }
-//        super.onBackPressed()
-//    }
-//
-//    override fun onResume() {
-//        super.onResume()
-//        if (playFlag) binding?.videoPlayer?.play()
-//        handler.removeCallbacks(runnable)
-//        if (position > 0) {
-//            binding?.videoPlayer?.seekTo(position)
-//            position = 0
-//        }
-//    }
-//
-//    override fun onPause() {
-//        super.onPause()
-//        if (binding?.videoPlayer?.isSystemFloatMode!!) return
-//        //暂停
-//        playFlag = binding?.videoPlayer?.isPlaying!!
-//        binding?.videoPlayer?.pause()
-//    }
-//
-//    override fun onStop() {
-//        super.onStop()
-//        if (binding?.videoPlayer?.isSystemFloatMode!!) return
-//        //进入后台不马上销毁,延时15秒
-//        handler.postDelayed(runnable, 1000 * 15.toLong())
-//    }
-//
-//    override fun onDestroy() {
-//        super.onDestroy() //销毁
-//        if (binding?.videoPlayer?.isSystemFloatMode!!) binding?.videoPlayer?.quitWindowFloat()
-//        binding?.videoPlayer?.release()
-//        handler.removeCallbacks(runnable)
-//    }
-//
 
 }

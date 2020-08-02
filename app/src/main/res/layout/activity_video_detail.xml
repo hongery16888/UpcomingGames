@@ -1,38 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.text.TextUtils" />
+
+        <import type="android.view.View" />
+
+        <import type="com.magic.upcoming.games.listener.BindingClickListener" />
+
+        <variable
+            name="video"
+            type="com.magic.upcoming.games.model.video.VideoModel" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-<!--        <com.magic.upcoming.games.view.DemoQSVideoView-->
-<!--            android:id="@+id/video_player"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="200dp"-->
-<!--            app:layout_constraintLeft_toLeftOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            android:background="@android:color/black"/>-->
-
         <FrameLayout
             android:id="@+id/mFrameLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:background="@android:color/black">
 
             <WebView
                 android:id="@+id/webview_video_player"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
+
         </FrameLayout>
 
-        <ScrollView
+        <com.magic.upcoming.games.view.NestedScrollingParentScrollView
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="2">
 
-        </ScrollView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/summary_cardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_normal"
+                    app:cardBackgroundColor="?attr/colorBackgroundVariant"
+                    app:layout_constraintTop_toBottomOf="@id/details_cardView">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_10">
+
+                        <TextView
+                            android:id="@+id/title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp_10"
+                            android:layout_marginEnd="@dimen/dp_10"
+                            android:layout_marginBottom="@dimen/dp_10"
+                            android:text="@{video.videoName}"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:paddingStart="@dimen/dp_10"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            tools:text="September 19, 2020" />
+
+                        <com.shehuan.niv.NiceImageView
+                            android:id="@+id/avatar"
+                            avatarImg="@{video.user}"
+                            android:layout_width="38dp"
+                            android:layout_height="38dp"
+                            android:layout_marginTop="@dimen/dp_10"
+                            app:border_color="@color/avatar_border"
+                            app:border_width="2dp"
+                            app:is_circle="true"
+                            app:layout_constraintLeft_toLeftOf="@+id/title"
+                            app:layout_constraintTop_toBottomOf="@id/title"
+                            tools:ignore="MissingConstraints" />
+
+                        <TextView
+                            android:id="@+id/title_textView"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp_10"
+                            android:layout_marginEnd="@dimen/dp_10"
+                            android:ellipsize="end"
+                            android:lines="1"
+                            android:text="@{video.user}"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toEndOf="@id/avatar"
+                            app:layout_constraintTop_toTopOf="@id/avatar"
+                            tools:text="Cyberpunk 2077" />
+
+                        <TextView
+                            android:id="@+id/release_date_textView"
+                            formatPublishDate="@{video.publishDate}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp_10"
+                            android:textSize="13sp"
+                            app:layout_constraintLeft_toRightOf="@id/avatar"
+                            app:layout_constraintTop_toBottomOf="@id/title_textView"
+                            tools:text="September 19, 2020" />
+
+                        <TextView
+                            android:id="@+id/type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/type"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="@dimen/dp_5"
+                            app:layout_constraintTop_toBottomOf="@id/avatar"
+                            app:layout_constraintLeft_toLeftOf="@id/avatar"
+                            android:paddingTop="@dimen/dp_10"
+                            android:paddingBottom="@dimen/dp_10"
+                            android:paddingEnd="@dimen/dp_10"/>
+
+                        <TextView
+                            android:id="@+id/video_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{video.videoType}"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:visibility="@{TextUtils.isEmpty(video.videoType) ? View.GONE : View.VISIBLE}"
+                            app:layout_constraintBottom_toBottomOf="@id/type"
+                            app:layout_constraintLeft_toRightOf="@id/type"
+                            app:layout_constraintTop_toTopOf="@id/type"
+                            tools:text="Features" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/screenshot_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginEnd="@dimen/margin_normal"/>
+
+            </LinearLayout>
+
+        </com.magic.upcoming.games.view.NestedScrollingParentScrollView>
 
     </LinearLayout>
 </layout>
