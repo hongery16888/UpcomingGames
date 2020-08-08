@@ -58,4 +58,5 @@
     <string name="screenshot_title">Screenshot</string>
     <string name="description">Description</string>
     <string name="type">Type : </string>
+    <string name="game_review_title">Game Review</string>
 </resources>

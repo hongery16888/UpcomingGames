@@ -58,6 +58,9 @@
         <activity android:name=".activity.video.VideoDetailActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"/>
+
+        <activity android:name=".activity.review.ReviewDetailActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

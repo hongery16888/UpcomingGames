@@ -34,8 +34,16 @@ open class ResponseApi {
 
         val videoListFieldList: String
             get() = "${ApiField.Id.field},${ApiField.Guid.field},${ApiField.Name.field},${ApiField.Image.field}," +
-                    "${ApiField.VideoLengthSeconds.field},${ApiField.VideoPublishDate.field},${ApiField.DetailUrl.field}," +
+                    "${ApiField.VideoLengthSeconds.field},${ApiField.PublishDate.field},${ApiField.DetailUrl.field}," +
                     "${ApiField.VideoUser.field},${ApiField.VideoYoutubeId.field},${ApiField.VideoType.field},${ApiField.EmbedPlayer.field}," +
                     "${ApiField.Deck.field},${ApiField.VideoHDUrl.field},${ApiField.VideoHighUrl.field},${ApiField.VideoLowUrl.field}"
+
+        val reviewListSort: String
+            get() =  "${ApiField.PublishDate.field}:${SortDirection.Descending.direction}"
+
+        val reviewListFieldList: String
+            get() = "${ApiField.Id.field},${ApiField.Guid.field},${ApiField.Deck.field},${ApiField.Game.field},${ApiField.Platforms.field}," +
+                    "${ApiField.Description.field},${ApiField.DetailUrl.field},${ApiField.PublishDate.field}," +
+                    "${ApiField.Score.field},${ApiField.Reviewer.field}"
     }
 }

@@ -15,10 +15,10 @@
         app:cnb_iconColor="@color/find" />
 
     <item
-        android:id="@+id/favorites"
-        android:icon="@drawable/ic_favorites"
-        android:title="Favorite"
-        app:cnb_iconColor="@color/favorites"/>
+        android:id="@+id/review"
+        android:icon="@drawable/ic_review"
+        android:title="Review"
+        app:cnb_iconColor="@color/review"/>
 
     <item
         android:id="@+id/settings"

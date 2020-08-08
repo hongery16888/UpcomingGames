@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.text.TextUtils" />
+        <import type="android.view.View" />
+        <import type="com.magic.upcoming.games.listener.BindingClickListener" />
+        <variable
+            name="review"
+            type="com.magic.upcoming.games.model.review.ReviewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/dp_20">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/image_cardView"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            app:cardElevation="0dp"
+            app:layout_constraintDimensionRatio="16:9"
+            android:layout_height="0dp">
+
+            <ImageView
+                android:id="@+id/game_imageView"
+                imageUrl="@{review.reviewImage}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/game_cover"
+                android:scaleType="fitXY"
+                tools:src="@tools:sample/backgrounds/scenic" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/game_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="2dp"
+            android:padding="@dimen/dp_10"
+            android:text="@{review.game.gameName}"
+            android:maxLines="2"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/image_cardView"
+            app:layout_constraintRight_toLeftOf="@id/rating_star"
+            app:layout_constraintLeft_toLeftOf="parent"
+            tools:text="Cyberpunk 2077" />
+
+        <TextView
+            android:id="@+id/deck"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="2dp"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:text="@{review.deck}"
+            android:maxLines="3"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/game_name"
+            app:layout_constraintLeft_toLeftOf="@id/game_name"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:text="Cyberpunk 2077" />
+
+        <com.idlestar.ratingstar.RatingStarView
+            android:id="@+id/rating_star"
+            app:rsv_cornerRadius="4dp"
+            app:rsv_starMargin="5dp"
+            app:rsv_strokeWidth="1px"
+            app:rsv_strokeColor="#457DD7"
+            app:rsv_starForegroundColor="#DB6958"
+            app:rsv_starBackgroundColor="#757575"
+            app:rsv_starNum="5"
+            app:rsv_onlyHalfStar="true"
+            app:rsv_enableSelectRating="false"
+            app:rsv_starThickness="0.7"
+            app:rsv_drawStrokeForEmptyStar="false"
+            app:rsv_drawStrokeForHalfStar="true"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/game_name"
+            app:layout_constraintBottom_toBottomOf="@id/game_name"/>
+
+        <TextView
+            android:id="@+id/reviewer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{"By " + review.reviewer + "  -  "}'
+            android:textSize="13sp"
+            android:layout_marginTop="@dimen/dp_10"
+            app:layout_constraintLeft_toLeftOf="@id/deck"
+            app:layout_constraintTop_toBottomOf="@id/deck"
+            tools:text="By MagicHua - " />
+
+        <TextView
+            android:id="@+id/release_date_textView"
+            formatPublishDate="@{review.publishDate}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            app:layout_constraintTop_toTopOf="@id/reviewer"
+            app:layout_constraintLeft_toRightOf="@id/reviewer"
+            tools:text="September 19, 2020" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

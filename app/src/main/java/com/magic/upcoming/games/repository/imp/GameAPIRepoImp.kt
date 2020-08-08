@@ -3,6 +3,7 @@ package com.magic.upcoming.games.repository.imp
 import com.magic.upcoming.games.model.base.BaseModel
 import com.magic.upcoming.games.model.game.GameDetailModel
 import com.magic.upcoming.games.model.game.GameModel
+import com.magic.upcoming.games.model.review.ReviewModel
 import com.magic.upcoming.games.model.search.SearchResult
 import com.magic.upcoming.games.model.translate.TranslateModel
 import com.magic.upcoming.games.model.video.VideoModel
@@ -45,6 +46,10 @@ class GameAPIRepoImp : GameAPIRepo {
 
     override fun videoList(offset: Int, limit: Int, sort: String, fieldList: String, apiKey: String, format: String): Flowable<BaseModel<ArrayList<VideoModel>>> {
         return initService()!!.getVideoListData(offset, limit, sort, fieldList, apiKey, format).flatMap(BaseResponseFunc1())
+    }
+
+    override fun reviewList(offset: Int, limit: Int, sort: String, fieldList: String, apiKey: String, format: String): Flowable<BaseModel<ArrayList<ReviewModel>>> {
+        return initService()!!.getReviewListData(offset, limit, sort, fieldList, apiKey, format).flatMap(BaseResponseFunc1())
     }
 
     companion object {

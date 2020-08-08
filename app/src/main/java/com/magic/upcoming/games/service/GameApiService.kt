@@ -2,6 +2,7 @@ package com.magic.upcoming.games.service
 
 import com.magic.upcoming.games.model.game.GameDetailModel
 import com.magic.upcoming.games.model.game.GameModel
+import com.magic.upcoming.games.model.review.ReviewModel
 import com.magic.upcoming.games.model.search.SearchResult
 import com.magic.upcoming.games.model.translate.TranslateModel
 import com.magic.upcoming.games.model.video.VideoModel
@@ -63,5 +64,13 @@ interface GameApiService {
             @Query("format") format: String
     ): Flowable<BaseResponse<ArrayList<VideoModel>>>
 
-
+    @GET("reviews")
+    fun getReviewListData(
+            @Query("offset") offset: Int,
+            @Query("limit") limit: Int,
+            @Query("sort") sort: String,
+            @Query("field_list") fieldList: String,
+            @Query("api_key") apiKey: String,
+            @Query("format") format: String
+    ): Flowable<BaseResponse<ArrayList<ReviewModel>>>
 }

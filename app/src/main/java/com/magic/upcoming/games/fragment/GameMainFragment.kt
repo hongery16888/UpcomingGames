@@ -34,7 +34,8 @@ class GameMainFragment: BaseFragment<FragmentGameMainBinding, GameMainViewModel>
         adapter = GameListAdapter(requireContext())
         binding?.gameRecyclerView?.adapter = adapter
 
-        binding?.viewModel?.gameList(0)
+        viewModel?.gameList(0)
+        viewModel?.saveGameInfo()
     }
 
     override fun setListener() {

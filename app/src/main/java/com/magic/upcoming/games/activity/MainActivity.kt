@@ -9,6 +9,7 @@ import com.magic.upcoming.games.R
 import com.magic.upcoming.games.base.BaseFragmentAdapter
 import com.magic.upcoming.games.fragment.FavoriteFragment
 import com.magic.upcoming.games.fragment.GameMainFragment
+import com.magic.upcoming.games.fragment.GameReviewFragment
 import com.magic.upcoming.games.fragment.GameVideoFragment
 import com.magic.upcoming.games.repository.RepositoryFactory
 import com.magic.upcoming.games.view.VerticalViewpager
@@ -30,28 +31,8 @@ class MainActivity : AppCompatActivity() {
 
         list.add(GameMainFragment())
         list.add(GameVideoFragment())
+        list.add(GameReviewFragment())
         list.add(FavoriteFragment())
-        list.add(FavoriteFragment())
-
-//        RepositoryFactory.getTranslateRepo(this).translate
-//                .enqueue(object : Callback<ResponseBody>{
-//                    override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-//                        println("------------------>onFailure : ${t.message}")
-//                    }
-//
-//                    override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-//                        println("------------------>onResponse : ${response.message()}")
-//                    }
-//                })
-
-//        RepositoryFactory.getGameRepo(this).translateFlow
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe({
-//                    println("------------------>onSuccess : ${it.out}")
-//                }, {
-//                    println("------------------>Throwable : ${it.message}")
-//                })
 
         container.setScanScroll(false)
         container.offscreenPageLimit = 4
@@ -63,7 +44,7 @@ class MainActivity : AppCompatActivity() {
             when (it) {
                 R.id.home -> container.currentItem = 0
                 R.id.video -> container.currentItem = 1
-                R.id.favorites -> container.currentItem = 2
+                R.id.review -> container.currentItem = 2
                 R.id.settings -> container.currentItem = 3
             }
         }
