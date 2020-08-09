@@ -1,5 +1,6 @@
 package com.magic.upcoming.games.service
 
+import com.magic.upcoming.games.model.company.CompanyModel
 import com.magic.upcoming.games.model.game.GameDetailModel
 import com.magic.upcoming.games.model.game.GameModel
 import com.magic.upcoming.games.model.review.ReviewModel
@@ -73,4 +74,14 @@ interface GameApiService {
             @Query("api_key") apiKey: String,
             @Query("format") format: String
     ): Flowable<BaseResponse<ArrayList<ReviewModel>>>
+
+    @GET("companies")
+    fun getCompanyListData(
+            @Query("offset") offset: Int,
+            @Query("limit") limit: Int,
+            @Query("sort") sort: String,
+            @Query("field_list") fieldList: String,
+            @Query("api_key") apiKey: String,
+            @Query("format") format: String
+    ): Flowable<BaseResponse<ArrayList<CompanyModel>>>
 }

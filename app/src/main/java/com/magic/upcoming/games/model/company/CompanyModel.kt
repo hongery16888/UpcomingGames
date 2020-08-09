@@ -3,7 +3,7 @@ package com.magic.upcoming.games.model.company
 import com.google.gson.annotations.SerializedName
 import com.magic.upcoming.games.model.game.GameImage
 
-internal class CompanyModel {
+class CompanyModel {
     /**
      * abbreviation : null
      * aliases : EA
@@ -49,7 +49,7 @@ internal class CompanyModel {
      * website : http://www.ea.com
      */
     @SerializedName("abbreviation")
-    var abbreviation: Any? = null
+    var abbreviation: String? = null
 
     @SerializedName("aliases")
     var aliases: String? = null
@@ -67,13 +67,13 @@ internal class CompanyModel {
     var deck: String? = null
 
     @SerializedName("description")
-    var description: String? = null
+    var description: String? = "111"
 
     @SerializedName("guid")
-    var guid: String? = null
+    var companyGuid: String? = null
 
     @SerializedName("id")
-    var id = 0
+    var companyId = 0
 
     @SerializedName("image")
     var image: GameImage? = null
@@ -91,7 +91,7 @@ internal class CompanyModel {
     var locationState: String? = null
 
     @SerializedName("name")
-    var name: String? = null
+    var companyName: String? = null
 
     @SerializedName("phone")
     var phone: String? = null

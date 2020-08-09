@@ -6,6 +6,7 @@ import android.os.Message
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.gson.Gson
 import com.magic.upcoming.games.base.BaseViewModel
 import com.magic.upcoming.games.model.base.BaseModel
 import com.magic.upcoming.games.model.game.GameModel
@@ -66,10 +67,20 @@ class GameMainViewModel : BaseViewModel() {
 
     @SuppressLint("CheckResult")
     fun saveGameInfo(){
-//        Rx2AndroidNetworking.get("https://www.playsoftware.net/boon/game_index.php")
-//                .addQueryParameter("game_id", "44")
-//                .addQueryParameter("game_guid", "88-1")
-//                .addQueryParameter("game_name", "MagicHua")
+
+        val gson = Gson()
+
+        RepositoryFactory.getGameApiRepo().companyList(0, 3)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    println("------------------>Company : $it")
+                    save(gson.toJson(it))
+                }, {
+                    toast(it.message)
+                })
+
+//        Rx2AndroidNetworking.get("https://www.giantbomb.com/api/companies/?api_key=c0d838fadae058f620be7fdaffbbbd8c7ad29d12&format=json&limit=2&sort=date_last_updated:dec")
 //                .build()
 //                .stringObservable
 //                .subscribeOn(Schedulers.io())
@@ -81,8 +92,13 @@ class GameMainViewModel : BaseViewModel() {
 //                    println("------------------>Throwable : $it")
 //                })
 
-        Rx2AndroidNetworking.get("https://www.playsoftware.net/boon/save_game.php")
-                .addQueryParameter("JsonStr", "{\"error\":\"OK\",\"limit\":2,\"offset\":0,\"number_of_page_results\":2,\"number_of_total_results\":74575,\"status_code\":1,\"results\":[{\"name\":\"Desert Strike: Return to the Gulf\"},{\"name\":\"Breakfree\"}],\"version\":\"1.0\"}")
+
+    }
+
+    @SuppressLint("CheckResult")
+    private fun save(strData: String){
+        Rx2AndroidNetworking.post("https://www.playsoftware.net/boon/save_company.php")
+                .addBodyParameter("JsonStr", strData)
                 .build()
                 .stringObservable
                 .subscribeOn(Schedulers.io())
@@ -93,7 +109,6 @@ class GameMainViewModel : BaseViewModel() {
                 },{
                     println("------------------>Throwable : $it")
                 })
-
     }
 
     private val _LoadingStatus = MutableLiveData<Event<Boolean>>()

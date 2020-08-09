@@ -32,5 +32,16 @@ enum class ApiField(val field: String) {
     VideoType("video_type"),
     VideoHDUrl("hd_url"),
     VideoHighUrl("high_url"),
-    VideoLowUrl("low_url")
+    VideoLowUrl("low_url"),
+    Abbreviation("abbreviation"),
+    Aliases("aliases"),
+    DateAdded("date_added"),
+    DateFounded("date_founded"),
+    LocationAddress("location_address"),
+    LocationCity("location_city"),
+    LocationCountry("location_country"),
+    LocationState("location_state"),
+    Phone("phone"),
+    SiteDetailUrl("site_detail_url"),
+    Website("website")
 }

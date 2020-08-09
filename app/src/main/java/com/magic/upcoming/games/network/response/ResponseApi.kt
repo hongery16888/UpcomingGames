@@ -45,5 +45,15 @@ open class ResponseApi {
             get() = "${ApiField.Id.field},${ApiField.Guid.field},${ApiField.Deck.field},${ApiField.Game.field},${ApiField.Platforms.field}," +
                     "${ApiField.Description.field},${ApiField.DetailUrl.field},${ApiField.PublishDate.field}," +
                     "${ApiField.Score.field},${ApiField.Reviewer.field}"
+
+        val companyListSort: String
+            get() =  "${ApiField.PublishDate.field}:${SortDirection.Descending.direction}"
+
+        val companyListFieldList: String
+            get() = "${ApiField.Id.field},${ApiField.Guid.field},${ApiField.Deck.field},${ApiField.Game.field},${ApiField.Name.field}," +
+                    "${ApiField.Description.field},${ApiField.DateLastUpdated.field},${ApiField.Abbreviation.field},${ApiField.Aliases.field}," +
+                    "${ApiField.DateAdded.field},${ApiField.DateFounded.field},${ApiField.LocationAddress.field}," +
+                    "${ApiField.LocationCity.field},${ApiField.LocationCountry.field},${ApiField.LocationState.field}," +
+                    "${ApiField.Phone.field},${ApiField.SiteDetailUrl.field},${ApiField.Website.field},${ApiField.Image.field}"
     }
 }

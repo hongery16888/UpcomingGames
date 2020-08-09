@@ -1,6 +1,7 @@
 package com.magic.upcoming.games.repository.imp
 
 import com.magic.upcoming.games.model.base.BaseModel
+import com.magic.upcoming.games.model.company.CompanyModel
 import com.magic.upcoming.games.model.game.GameDetailModel
 import com.magic.upcoming.games.model.game.GameModel
 import com.magic.upcoming.games.model.review.ReviewModel
@@ -50,6 +51,10 @@ class GameAPIRepoImp : GameAPIRepo {
 
     override fun reviewList(offset: Int, limit: Int, sort: String, fieldList: String, apiKey: String, format: String): Flowable<BaseModel<ArrayList<ReviewModel>>> {
         return initService()!!.getReviewListData(offset, limit, sort, fieldList, apiKey, format).flatMap(BaseResponseFunc1())
+    }
+
+    override fun companyList(offset: Int, limit: Int, sort: String, fieldList: String, apiKey: String, format: String): Flowable<BaseModel<ArrayList<CompanyModel>>> {
+        return initService()!!.getCompanyListData(offset, limit, sort, fieldList, apiKey, format).flatMap(BaseResponseFunc1())
     }
 
     companion object {
